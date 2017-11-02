@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework_response import Response
 
-# Create your views here.
+from . import models
+from . import serializers
+
+class ListAllImages(APIView):
+
+    def get(self, request, format=None):
+
+        all_images = models.Image.objects.all()
+        serializer = serializers.ImageSerializer(all_images, many=True) #serializer는 단수이기 때문에 many=True를 적용한다.
+
+        return Response(data=serializer.data)
