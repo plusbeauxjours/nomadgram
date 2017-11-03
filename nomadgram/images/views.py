@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from rest_framework_response import Response
+from rest_framework.response import Response
 
 from . import models
 from . import serializers
