@@ -34,6 +34,8 @@ class LikeAdmin(admin.ModelAdmin):
     list_display = (
         'creator',
         'image',
+        'created_at',
+        'updated_at',
     )   
 
 @admin.register(models.Comment)

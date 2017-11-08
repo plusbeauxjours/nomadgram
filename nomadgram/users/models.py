@@ -16,6 +16,7 @@ class User(AbstractUser):
 
     # First Name and Last Name do not cover name patterns
     # around the globe.
+    profile_image = models.ImageField(null=True)
     name = models.CharField(_('Name of User'), blank=True, max_length=255)
     website = models.URLField(null=True)
     bio = models.TextField(null=True)
@@ -29,3 +30,11 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
+
+    @property
+    def followers_count(self):
+        return self.followers.count()
+
+    @property
+    def following_count(self):
+        return self.following.count()

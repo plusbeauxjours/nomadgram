@@ -3,18 +3,18 @@ from . import views
 
 urlpatterns = [
     url(
-        regex=r'^all/$',
-        view=views.ListAllImages.as_view(),
-        name='all_images',
+        regex=r'^$',
+        view=views.Feed.as_view(),
+        name='feed',
     ),
     url(
-        regex=r'^comments/$',
-        view=views.ListAllComments.as_view(),
-        name='all_comments',
+        regex=r'(?P<image_id>[0-9]+)/like/',
+        view=views.LikeImage.as_view(),
+        name='like_image',
     ),
     url(
-        regex=r'^likes/$',
-        view=views.ListAllLikes.as_view(),
-        name='all_likes',
+    regex=r'(?P<image_id>[0-9]+)/unlike/',
+    view=views.UnlikeImage.as_view(),
+    name='unlike_image',
     ),
 ]
