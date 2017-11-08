@@ -17,7 +17,7 @@ class Feed(APIView):
         
         for following_user in following_users:
 
-            user_images = following_user.images.all()[:2]   # user가 following하는 애들
+            user_images = following_user.images.all()[:4]   # user가 following하는 애들
 
             for image in user_images:
                 
@@ -82,11 +82,29 @@ class UnlikeImage(APIView):
         return Response(status=200)
 
 
-# 2. we want to find an image with this id
-# 3. we want to create a like for that image
+class CommentOnImage(APIView):
 
+    def post(self, request, image_id, format=None):
+        
+        user = request.user  
 
+        try:
+            found_image = models.Image.objects.get(id=image_id)
 
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.CommentSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user, image=found_image)   
+            # .save()가 없을 때는 creator와 id가 없었지만, 저장하는 경우에는 포함하여 저장된다. 
+            # 빈 것을 저장하면 안되니까, 해당 값을 모델에 붙여 놓은 것이다. 
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+            return Response(data=serializer.errors, status=status.HTTP400_BAD_REQUEST )
 
 
 # FOR PRACTICE AND UNDERSTANDING APIVIEW, SERIALIZERS.PY
