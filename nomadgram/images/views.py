@@ -74,39 +74,46 @@ class LikeImage(APIView):
             return Response(status=status.HTTP_201_CREATED)
 
 
-class UnlikeImage(APIView):
-
-    def get(self, request, image_id, format=None):
-        print(image_id)
-
-        return Response(status=200)
-
-
 class CommentOnImage(APIView):
 
     def post(self, request, image_id, format=None):
-        
-        user = request.user  
+
+        user = request.user
 
         try:
             found_image = models.Image.objects.get(id=image_id)
-
         except models.Image.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
+        
         serializer = serializers.CommentSerializer(data=request.data)
 
         if serializer.is_valid():
 
-            serializer.save(creator=user, image=found_image)   
-            # .save()가 없을 때는 creator와 id가 없었지만, 저장하는 경우에는 포함하여 저장된다. 
-            # 빈 것을 저장하면 안되니까, 해당 값을 모델에 붙여 놓은 것이다. 
+            serializer.save(creator=user, image=found_image)
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         else:
-            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST )
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class Comment(APIView):
+
+    def delete(self, request, comment_id, format=None):
+        
+        user = request.user
+
+        try:
+            comment = models.Comment.objects.get(id=comment_id, creator=user)
+            comment.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        except models.Comment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+
+        
+    
 # FOR PRACTICE AND UNDERSTANDING APIVIEW, SERIALIZERS.PY
 # class ListAllImages(APIView):
 
