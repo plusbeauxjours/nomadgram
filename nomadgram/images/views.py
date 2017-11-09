@@ -104,7 +104,7 @@ class CommentOnImage(APIView):
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         else:
-            return Response(data=serializer.errors, status=status.HTTP400_BAD_REQUEST )
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST )
 
 
 # FOR PRACTICE AND UNDERSTANDING APIVIEW, SERIALIZERS.PY
