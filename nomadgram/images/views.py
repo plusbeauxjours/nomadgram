@@ -37,29 +37,21 @@ class Feed(APIView):
 
 class LikeImage(APIView):
 
-    def get(self, request, image_id, format=None):
+    def post(self, request, image_id, format=None):
 
         user = request.user
     
         try:
             found_image = models.Image.objects.get(id=image_id)
-            # like를 누를 때 넘어오는 url을 예상하고 있어야만 설계를 할 수 있다. 이 경우에는 image_id를 받기 때문에 바로 preexisting_like를 체크 할 수 있다. 
-            
         except models.Image.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)     
-            # if get an except, just finish function with return even if there is more code like print() (bcs of return.)
 
         try:
             preexisting_like = models.Like.objects.get(
                 creator=user,
                 image=found_image,
             )
-            # 같은 user가 like하였던 image가 있다면, foreign key로 연결되어있는 해당 like model을 지운다. 
-            preexisting_like.delete()
-
-            return Response(status=status.HTTP_204_NO_CONTENT)
-            # django-restframework에는 status code가 있기 때문에 response로 따라가는 것이다. 
-
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
         except models.Like.DoesNotExist:
 
             new_like = models.Like.objects.create(
@@ -72,6 +64,27 @@ class LikeImage(APIView):
 
             return Response(status=status.HTTP_201_CREATED)
 
+
+class UnLikeImage(APIView):
+
+    def delete(self, request, image_id, format=None):
+
+        user = request.user
+    
+        try:
+            found_image = models.Image.objects.get(id=image_id)
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)     
+
+        try:
+            preexisting_like = models.Like.objects.get(
+                creator=user,
+                image=found_image,
+            )
+            preexisting_like.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except models.Like.DoesNotExist:
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
 
 class CommentOnImage(APIView):
 
@@ -105,7 +118,6 @@ class Comment(APIView):
             comment = models.Comment.objects.get(id=comment_id, creator=user)
             comment.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-
         except models.Comment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
