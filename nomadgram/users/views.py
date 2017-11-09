@@ -45,7 +45,7 @@ class UnFollowUser(APIView):
         except models.User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        user.following.delete()
+        user.following.remove(user_to_follow)
 
         user.save()
 
