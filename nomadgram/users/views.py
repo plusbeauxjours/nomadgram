@@ -4,7 +4,7 @@ from rest_framework import status
 
 from . import models
 from . import serializers
-
+                    
 
 class ExploreUsers(APIView):
  
@@ -14,6 +14,13 @@ class ExploreUsers(APIView):
         serializer = serializers.ListUserSerializer(last_five, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+# from rest_framework import generics
+# class ExploreUsers(generics.LisetAPIView):
+#     queryset = models.User.objects.all().order_by('-date_joined')[:5]
+#     serializer_class = ListUserSerializer
+# ListAPIView를 쓸 경우 위와 같이 쓸 수 있다. 
 
 
 class FollowUser(APIView):
