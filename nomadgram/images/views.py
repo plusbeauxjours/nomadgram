@@ -16,7 +16,7 @@ class Feed(APIView):
         
         for following_user in following_users:
 
-            user_images = following_user.images.all()[:4]   # user가 following하는 애들
+            user_images = following_user.images.all()[:3]   # user가 following하는 애들
 
             for image in user_images:
                 
@@ -108,7 +108,7 @@ class CommentOnImage(APIView):
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class Comment(APIView):
+class DeleteComment(APIView):
 
     def delete(self, request, comment_id, format=None):
         

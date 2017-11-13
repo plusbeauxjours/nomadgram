@@ -24,7 +24,7 @@ urlpatterns = [
     ),
     url(
         regex=r'comments/(?P<comment_id>[0-9]+)/$',
-        view=views.Comment.as_view(),
+        view=views.DeleteComment.as_view(),
         name='comment',
     ),
     url(
