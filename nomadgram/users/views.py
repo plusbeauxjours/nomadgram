@@ -29,6 +29,8 @@ class FollowUser(APIView):
 
         user = request.user
 
+        # follow notification
+
         try:
             user_to_follow = models.User.objects.get(id=user_id)
         except models.User.DoesNotExist:
@@ -46,6 +48,8 @@ class UnFollowUser(APIView):
     def post(self, request, user_id, format=None):
 
         user = request.user
+
+        # unfloow notification
 
         try:
             user_to_follow = models.User.objects.get(id=user_id)

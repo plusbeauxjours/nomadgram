@@ -6,5 +6,5 @@ class NotificationAdmin(admin.ModelAdmin):
     list_display = (
         'creator',
         'to',
-        'notification_ type',
+        'notification_type',
     )
