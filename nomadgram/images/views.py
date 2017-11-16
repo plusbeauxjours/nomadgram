@@ -27,6 +27,12 @@ class Feed(APIView):
         # print(following_users) 
         # print(image_list)
 
+        my_images = user.images.all()[:2]
+
+        for image in my_images:
+
+            image_list.append(image)
+
         sorted_list = sorted(image_list, key=lambda image: image.created_at, reverse=True)     
         # sorted를 하지 않을 경우, 최신순서가 아니라, 먼저 loop를 돈 user의 이미지 순서로 나오게 된다. 
 
