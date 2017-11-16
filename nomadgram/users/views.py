@@ -4,7 +4,8 @@ from rest_framework import status
 
 from . import models
 from . import serializers
-                    
+
+from nomadgram.notifications import views as notification_views
 
 class ExploreUsers(APIView):
  
@@ -25,14 +26,14 @@ class ExploreUsers(APIView):
 
 class FollowUser(APIView):
 
-    def post(self, request, user_id, format=None):
+    def post(self, request, username, format=None):
 
         user = request.user
 
         # follow notification
 
         try:
-            user_to_follow = models.User.objects.get(id=user_id)
+            user_to_follow = models.User.objects.get(username=username)
         except models.User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -40,19 +41,21 @@ class FollowUser(APIView):
 
         user.save()
 
+        notification_views.create_notification(user, user_to_follow, 'follow')
+
         return Response(status=status.HTTP_200_OK)
 
 
 class UnFollowUser(APIView):
 
-    def post(self, request, user_id, format=None):
+    def post(self, request, username, format=None):
 
         user = request.user
 
         # unfloow notification
 
         try:
-            user_to_follow = models.User.objects.get(id=user_id)
+            user_to_follow = models.User.objects.get(username=username)
         except models.User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 

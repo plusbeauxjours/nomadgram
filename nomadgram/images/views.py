@@ -5,6 +5,8 @@ from rest_framework import status
 from . import models
 from . import serializers
 
+from nomadgram.notifications import views as notification_views
+
 class Feed(APIView):
 
     def get(self, request, format=None):
@@ -41,8 +43,6 @@ class LikeImage(APIView):
 
         user = request.user
 
-        # like notification
-    
         try:
             found_image = models.Image.objects.get(id=image_id)
         except models.Image.DoesNotExist:
@@ -61,6 +61,8 @@ class LikeImage(APIView):
                 image=found_image, 
             )
             # like라는 model에 추가를 하는 것이다. 상태가 변하는 것이 아니라. 
+
+            notification_views.create_notification(user, found_image.creator, 'like', found_image)
 
             new_like.save()
 
@@ -88,13 +90,11 @@ class UnLikeImage(APIView):
         except models.Like.DoesNotExist:
             return Response(status=status.HTTP_304_NOT_MODIFIED)
 
-class CommentOnImage(APIView):
+class Comment(APIView):
 
     def post(self, request, image_id, format=None):
 
         user = request.user
-
-        # comment notification
 
         try:
             found_image = models.Image.objects.get(id=image_id)
@@ -106,6 +106,9 @@ class CommentOnImage(APIView):
         if serializer.is_valid():
 
             serializer.save(creator=user, image=found_image)
+
+            notification_views.create_notification(user, found_image.creator, 'comment', found_image, serializer.data['message'])
+
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         else:

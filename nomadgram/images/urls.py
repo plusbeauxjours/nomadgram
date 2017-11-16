@@ -19,7 +19,7 @@ urlpatterns = [
     ),
     url(
         regex=r'^(?P<image_id>[0-9]+)/comments/$',
-        view=views.CommentOnImage.as_view(),
+        view=views.Comment.as_view(),
         name='comment_image',
     ),
     url(
