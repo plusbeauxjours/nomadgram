@@ -152,6 +152,26 @@ class Search(APIView):
             # hashtags = request.query_params.get('hashtags', None)에서 None이 넘어가
             # AttributeError가 뜬다. 
  
+
+class ModerateComment(APIView):
+
+    def delete(self, request, image_id, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            comment_to_delete = models.Comment.objects.get(
+                id=comment_id, image__id=image_id, image__creator=user)
+                # comment object는 image object를 안에 가지고 있다. 그래서 별도로 이미지를 불러 올 필요가 없다. 
+                # comment id 1번의 image id를 체크하고, creator가 본인인지 확인
+                # image__id는 comment가 향하는 image의 id
+                # image__creator는 comment가 향하는 imaged의 creator
+            comment_to_delete.delete()
+        except models.Comment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)                
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
     
 # FOR PRACTICE AND UNDERSTANDING APIVIEW, SERIALIZERS.PY
 # class ListAllImages(APIView):

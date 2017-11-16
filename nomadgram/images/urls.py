@@ -23,6 +23,11 @@ urlpatterns = [
         name='comment_image',
     ),
     url(
+        regex=r'^(?P<image_id>[0-9]+)/comments/(?P<comment_id>[0-9]+)/$',
+        view=views.ModerateComment.as_view(),
+        name='comment_image',
+    ),
+    url(
         regex=r'comments/(?P<comment_id>[0-9]+)/$',
         view=views.DeleteComment.as_view(),
         name='comment',
