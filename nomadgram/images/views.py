@@ -43,6 +43,21 @@ class Feed(APIView):
         return Response(serializer.data)
 
 
+class ImageDetail(APIView):
+
+    def get(self, request, image_id, format=None):
+        
+        user = request.user
+
+        try:
+            image = models.Image.objects.get(id=image_id)
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.ImageSerializer(image)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
 class LikeImage(APIView):
 
     def post(self, request, image_id, format=None):
