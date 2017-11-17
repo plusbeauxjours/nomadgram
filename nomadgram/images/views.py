@@ -60,6 +60,26 @@ class ImageDetail(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+    def put(self, request, image_id, format=None):
+
+        user = request.user
+
+        try:
+            image = models.Image.objects.get(id=image_id, creator=user) # edit는 아무 이미지나 다 할 수 있으면 안된다. 
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_401_UNAUTHORIZED) 
+
+        serializer = serializers.InputImageSerialzier(image, data=request.data, partial=True)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class LikeImage(APIView):
 
     def get(self, request, image_id, format=None):
