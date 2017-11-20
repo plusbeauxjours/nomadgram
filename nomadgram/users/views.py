@@ -34,6 +34,9 @@ class FollowUser(APIView):
 
         try:
             user_to_follow = models.User.objects.get(username=username)
+
+            if user_to_follow.username == user.username:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
         except models.User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
