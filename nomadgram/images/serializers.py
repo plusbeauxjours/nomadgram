@@ -3,10 +3,6 @@ from . import models
 from nomadgram.users import models as user_models
 from taggit_serializer.serializers import TagListSerializerField
 from taggit_serializer.serializers import TaggitSerializer
-<<<<<<< HEAD
-=======
-
->>>>>>> f5c903989c4c3716f8672c50186f57a0cf93d1ce
 
 
 class SmallImageSerializer(serializers.ModelSerializer):
