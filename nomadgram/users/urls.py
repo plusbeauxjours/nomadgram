@@ -9,6 +9,11 @@ urlpatterns = [
         name='explore_users'
     ),
     url(
+        regex=r'^(?P<username>\w+)/profileimage/$',
+        view=views.FollowUser.as_view(),
+        name='follow_user',
+    ),
+    url(
         regex=r'^(?P<username>\w+)/follow/$',
         view=views.FollowUser.as_view(),
         name='follow_user',
@@ -42,5 +47,10 @@ urlpatterns = [
         regex=r'^(?P<username>\w+)/password/$',
         view=views.ChangePassword.as_view(),
         name='change',
+    ),
+    url(
+        regex=r'^login/facebook/$', 
+        view=views.FacebookLogin.as_view(), 
+        name='fb_login',
     ),
 ]

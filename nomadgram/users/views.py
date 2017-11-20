@@ -7,6 +7,9 @@ from . import serializers
 
 from nomadgram.notifications import views as notification_views
 
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+
 class ExploreUsers(APIView):
  
     def get(self, request, format=None):
@@ -209,3 +212,7 @@ class ChangePassword(APIView):
             else:
 
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter

@@ -47,13 +47,16 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
-    'allauth.socialaccount',  # registration
     'rest_framework',   # REST framework
     'rest_framework.authtoken', 
     'taggit',   # Tags for the photos
     'taggit_serializer', #tag serializer
     'rest_auth', # rest auth
     'rest_auth.registration', # enable registration
+
+    # Social
+    'allauth.socialaccount',  # registration
+    'allauth.socialaccount.providers.facebook',
 ]
 
 # Apps specific for this project go here.
