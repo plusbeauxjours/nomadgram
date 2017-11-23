@@ -10,7 +10,7 @@ urlpatterns = [
     url(
         regex=r'^(?P<image_id>[0-9]+)/$',
         view=views.ImageDetail.as_view(),
-        name='li ke_image',
+        name='like_image',
     ),
     url(
         regex=r'^(?P<image_id>[0-9]+)/likes/$',
