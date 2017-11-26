@@ -182,7 +182,10 @@ module.exports = {
                       options: {
                         importLoaders: 1,
                         minimize: true,
-                        sourceMap: shouldUseSourceMap,
+                        modules: true,
+                        localIdentName: 
+                          '[path][name]__[local]--[hash:base64:5]',
+                        sourceMap: shouldUseSourceMap
                       },
                     },
                     {
@@ -212,11 +215,11 @@ module.exports = {
                         sourceMap: true
                       }
                     }
-                  ],
+                  ]
                 },
                 extractTextPluginOptions
               )
-            ),
+            )
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
           // "file" loader makes sure assets end up in the `build` folder.
