@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    url(
-        regex=r'^$',
+    path(
+        route='',
         view=views.Notifications.as_view(),
         name='notifications', 
     ),

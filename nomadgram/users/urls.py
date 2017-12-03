@@ -1,55 +1,56 @@
-from django.conf.urls import url
+from django.urls import include, path
+
 
 from . import views
 
 urlpatterns = [
-    url(
-        regex=r'^explore/$',
+    path(
+        route='explore/',
         view=views.ExploreUsers.as_view(),
         name='explore_users'
     ),
-    url(
-        regex=r'^(?P<username>\w+)/profileimage/$',
+    path(
+        route='<slug:username>/profileimage/',
         view=views.FollowUser.as_view(),
         name='follow_user',
     ),
-    url(
-        regex=r'^(?P<username>\w+)/follow/$',
+    path(
+        route='<slug:username>/follow/',
         view=views.FollowUser.as_view(),
         name='follow_user',
     ),
-    url(
-        regex=r'^(?P<username>\w+)/unfollow/$',
+    path(
+        route='<slug:username>/unfollow/',
         view=views.UnFollowUser.as_view(),
         name='unfollow_user',
     ),
-    url(
-        regex=r'^(?P<username>\w+)/followers/$',
+    path(
+        route='<slug:username>/followers/',
         view=views.UserFollowers.as_view(),
         name='user_follwers',
     ),
-    url(
-        regex=r'^(?P<username>\w+)/following/$',
+    path(
+        route='<slug:username>/following/',
         view=views.UserFollowing.as_view(),
         name='user_follwing',
     ),
-    url(
-        regex=r'^search/$',
+    path(
+        route='search/',
         view=views.Search.as_view(),
         name='search',
     ),
-    url(    
-        regex=r'^(?P<username>\w+)/$',  # ordering to bottom bcs of username 'search'
+    path(    
+        route='<slug:username>/',  # ordering to bottom bcs of username 'search'
         view=views.UserProfile.as_view(),
         name='user_profile',
     ),
-    url(
-        regex=r'^(?P<username>\w+)/password/$',
+    path(
+        route='<slug:username>/password/',
         view=views.ChangePassword.as_view(),
         name='change',
     ),
-    url(
-        regex=r'^login/facebook/$', 
+    path(
+        route='login/facebook/', 
         view=views.FacebookLogin.as_view(), 
         name='fb_login',
     ),
