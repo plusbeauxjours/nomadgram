@@ -5,11 +5,6 @@ $bg-color: red;
   color: $bg-color;
 }
 
-.App__logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App__header {
   background-color: #222;
   height: 150px;
@@ -23,9 +18,4 @@ $bg-color: red;
 
 .App__intro {
   font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
