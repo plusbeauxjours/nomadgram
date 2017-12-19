@@ -1,56 +1,56 @@
-from django.urls import include, path
+from django.conf.urls import include, url
 
 
 from . import views
 
 urlpatterns = [
-    path(
-        route='explore/',
+    url(
+        regex='explore/',
         view=views.ExploreUsers.as_view(),
         name='explore_users'
     ),
-    path(
-        route='<slug:username>/profileimage/',
+    url(
+        regex='<slug:username>/profileimage/',
         view=views.FollowUser.as_view(),
         name='follow_user',
     ),
-    path(
-        route='<slug:username>/follow/',
+    url(
+        regex='<slug:username>/follow/',
         view=views.FollowUser.as_view(),
         name='follow_user',
     ),
-    path(
-        route='<slug:username>/unfollow/',
+    url(
+        regex='<slug:username>/unfollow/',
         view=views.UnFollowUser.as_view(),
         name='unfollow_user',
     ),
-    path(
-        route='<slug:username>/followers/',
+    url(
+        regex='<slug:username>/followers/',
         view=views.UserFollowers.as_view(),
         name='user_follwers',
     ),
-    path(
-        route='<slug:username>/following/',
+    url(
+        regex='<slug:username>/following/',
         view=views.UserFollowing.as_view(),
         name='user_follwing',
     ),
-    path(
-        route='search/',
+    url(
+        regex='search/',
         view=views.Search.as_view(),
         name='search',
     ),
-    path(    
-        route='<slug:username>/',  # ordering to bottom bcs of username 'search'
+    url(    
+        regex='<slug:username>/',  # ordering to bottom bcs of username 'search'
         view=views.UserProfile.as_view(),
         name='user_profile',
     ),
-    path(
-        route='<slug:username>/password/',
+    url(
+        regex='<slug:username>/password/',
         view=views.ChangePassword.as_view(),
         name='change',
     ),
-    path(
-        route='login/facebook/', 
+    url(
+        regex='login/facebook/', 
         view=views.FacebookLogin.as_view(), 
         name='fb_login',
     ),

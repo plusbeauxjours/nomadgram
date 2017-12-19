@@ -1,44 +1,44 @@
-from django.urls import include, path
+from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    path(
-        route='',
+    url(
+        regex=r'^$',
         view=views.Images.as_view(),
         name='images',
     ),
-    path(
-        route='<int:imge_id>/',
+    url(
+        regex=r'^(?P<image_id>[0-9]+)/$',
         view=views.ImageDetail.as_view(),
         name='like_image',
     ),
-    path(
-        route='<int:imge_id>/likes/',
+    url(
+        regex=r'^(?P<image_id>[0-9]+)/likes/$',
         view=views.LikeImage.as_view(),
         name='like_image',
     ),
-     path(
-        route='<int:imge_id>/unlikes/',
+     url(
+        regex=r'^(?P<image_id>[0-9]+)/unlikes/$',
         view=views.UnLikeImage.as_view(),
         name='unlike_image',
     ),
-    path(
-        route='<int:imge_id>/comments/',
+    url(
+        regex=r'^(?P<image_id>[0-9]+)/comments/$',
         view=views.Comment.as_view(),
         name='comment_image',
     ),
-    path(
-        route='<int:imge_id>/comments/<int:comment_id>/',
+    url(
+        regex=r'^(?P<image_id>[0-9]+)/comments/(?P<comment_id>[0-9]+)/$',
         view=views.ModerateComment.as_view(),
         name='comment_image',
     ),
-    path(
-        route='comments/<int:comment_id>/',
+    url(
+        regex=r'^comments/(?P<comment_id>[0-9]+)/$',
         view=views.DeleteComment.as_view(),
         name='comment',
     ),
-    path(
-        route='search/',
+    url(
+        regex=r'^search/$',
         view=views.Search.as_view(),
         name='search',
     ),
