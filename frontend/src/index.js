@@ -5,8 +5,7 @@ import { Provider } from 'react-redux';
 import store from 'redux/configureStore';
 import App from 'App';
 
-
-console.log(store.getState());  
+store.dispatch({type: 'bullshit'})
 
 ReactDOM.render(
         <Provider store={store}>
