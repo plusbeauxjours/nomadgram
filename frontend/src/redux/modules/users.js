@@ -24,4 +24,4 @@ function reducer(state = initialState, action) {
 
 //reducer export
 
-Export default reducer;
+export default reducer;
