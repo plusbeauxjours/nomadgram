@@ -2,17 +2,19 @@
     width: 100%;
     max-width: $max-page-width;
     margin: 0 auto;
-    display: fles;
+    display: flex;
     min-height: 100%;
     margin-top: 30px;
     justify-content: center;
     align-items: center;
     .column{
         width: 40%;
-        margin-left: 35px;
-    }
+        &:last-child{
+            width: 35%;
+            margin-left: 35px;
+        }
         .app-box{
-            display: fles;
+            display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 35px;
@@ -26,16 +28,17 @@
                 }
             }
         }
-    .white-box{
-        text-align: center;
-        padding: 15px;
-        @include boxBorder(no);
-        .change-link{
-            color: $light-blue;
-            cursor: pointer;
-        }
-        p {
-            margin: 15px;
+        .white-box{
+            text-align: center;
+            padding: 15px;
+            @include boxBorder(no);
+            .change-link{
+                color: $light-blue;
+                cursor: pointer;
+            }
+            p {
+                margin: 15px;
+            }
         }
     }
 }
