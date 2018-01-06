@@ -12,11 +12,11 @@ class Container extends Component {
     _changeAction = () => {
         this.setState( prevState => {
             const { action } = prevState;
-            if(action === 'login'){
+            if (action === 'login') {
                 return {
                     action: 'signup'
                 }
-            } else if(action === 'signup'){
+            } else if(action === 'signup') {
                 return {
                     action: 'login'
                 };
