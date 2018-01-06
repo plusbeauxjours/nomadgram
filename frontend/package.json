@@ -28,6 +28,7 @@
     "history": "^4.7.2",
     "html-webpack-plugin": "2.29.0",
     "i18n": "^0.8.3",
+    "ionicons": "^3.0.0",
     "node-sass": "^4.7.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
