@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './styles.scss';
 import PropTypes from 'prop-types';
-import { LoginForm, SignupForm } from 'components/AuthForms';
+import LoginForm from 'components/LoginForm';
+import SignupForm from 'components/SignupForm';
 
 const Auth = (props, context) => (
   <main className={styles.auth}>
     <div className={styles.column}>
-      <img src={require("images/phone.png")} alt={context.t('Check our app. Is cool')} />
+      <img src={require("images/phone.png" )} alt={context.t('Check our app. Is cool')} />
     </div>
     <div className={styles.column}>
     <div className={`${styles.whiteBox} ${styles.formBox}`}>
