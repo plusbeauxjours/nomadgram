@@ -12,7 +12,7 @@ import { translations } from 'translations';
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <I18n translations={translations} initialLan="kr" fallbackLang="en">
+      <I18n translations={translations} initialLang="en" fallbackLang="en">
         <App />
       </I18n>
     </ConnectedRouter>
