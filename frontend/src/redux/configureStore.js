@@ -6,8 +6,6 @@ import user  from 'redux/modules/user';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { i18nState } from 'redux-i18n';
 
-// import Reactotron from 'ReactotronConfig';
-
 const env = process.env.NODE_ENV;
 
 const history = createHistory();
@@ -31,13 +29,16 @@ let store;
 
 if(env === 'development'){
     store = initialState => 
-    // Reactotron.createStore(
     createStore(
         reducer, 
         composeWithDevTools(applyMiddleware(...middlewares))
     );  
 } else {
-    store = initialState => createStore(reducer, applyMiddleware(...middlewares));  
+    store = initialState => 
+    createStore(
+        reducer, 
+        applyMiddleware(...middlewares)
+    );  
 }
 
 export { history };
