@@ -1,15 +1,14 @@
 """
-Base settings for nomadgram project.
-
+Django settings for nomadgram project.
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/
-
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (nomadgram/config/settings/base.py - 3 = nomadgram/)
+# (nomadgram/config/settings/base.py - 3 = nomadgram/)
+ROOT_DIR = environ.Path(__file__) - 3
 APPS_DIR = ROOT_DIR.path('nomadgram')
 
 # Load operating system environment variables and then prepare to use them
@@ -47,17 +46,15 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
-    'rest_framework',   # REST framework
-    'rest_framework.authtoken', 
-    'taggit',   # Tags for the photos
-    'taggit_serializer', #tag serializer
-    'rest_auth', # rest auth
-    'rest_auth.registration', # enable registration
-    'corsheaders', # django-cors-hearders To accept requests from React
-
-    # Social
-    'allauth.socialaccount',  # registration
-    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',  # registration
+    'rest_framework',  # REST framework
+    'rest_framework.authtoken',
+    'taggit',  # Tags for the photos
+    'taggit_serializer',  # tag serializer
+    'rest_auth',  # rest auth
+    'rest_auth.registration',  # enable registration
+    'corsheaders',  # To accept requests from React
 ]
 
 # Apps specific for this project go here.
@@ -65,8 +62,8 @@ LOCAL_APPS = [
     # custom users app
     'nomadgram.users.apps.UsersConfig',
     # Your stuff: custom apps go here
-    'nomadgram.images.apps.ImagesConfig',   #images app
-    'nomadgram.notifications.apps.NotificationsConfig',  #notifications app
+    'nomadgram.images.apps.ImagesConfig',  # images app
+    'nomadgram.notifications.apps.NotificationsConfig'  # notifications app
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -105,13 +102,14 @@ FIXTURE_DIRS = (
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND',
+                    default='django.core.mail.backends.smtp.EmailBackend')
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
-    ("""Minjae""", 'plusbeauxjours@gmail.com'),
+    ("""Nomad Coders""", 'nico@nomadcoders.co'),
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
@@ -198,7 +196,7 @@ STATIC_URL = '/static/'
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
     str(APPS_DIR.path('static')),
-    str(ROOT_DIR.path('frontend', 'build', 'static')) 
+    str(ROOT_DIR.path('frontend', 'build', 'static'))
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -264,7 +262,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
+ACCOUNT_ALLOW_REGISTRATION = env.bool(
+    'DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 ACCOUNT_ADAPTER = 'nomadgram.users.adapters.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'nomadgram.users.adapters.SocialAccountAdapter'
 
@@ -277,11 +276,10 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
-ADMIN_URL = 'admin/'
+ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
-
 TAGGIT_CASE_INSENSITIVE = True
 
 REST_FRAMEWORK = {
@@ -293,13 +291,47 @@ REST_FRAMEWORK = {
     ),
 }
 
+
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
-
 SOCIALACCOUNT_QUERY_EMAIL = True
-
-CORS_ORIGIN_ALLOW_ALL = True 
+CORS_ORIGIN_ALLOW_ALL = True
 
 JWT_AUTH = {
     'JWT_VERIFY_EXPIRATION': False
+}
+
+SOCIALACCOUNT_PROVIDERS = {  
+    'facebook': {  
+        'SCOPE': [  
+            'email',  
+            'public_profile',  
+            'user_friends'  
+        ],  
+        'FIELDS': [  
+            'id',  
+            'email',  
+            'name',  
+            'first_name',  
+            'last_name',  
+            'verified',
+            'locale',  
+            'timezone',  
+            'link',  
+            'gender',  
+            'updated_time',
+            'picture' 
+        ],  
+        'AUTH_PARAMS': {  
+            #'auth_type': 'reauthenticate'  
+        },  
+        'METHOD': 'oauth2',  
+        #'LOCALE_FUNC': 'path.to.callable',  
+        'VERIFIED_EMAIL': True,  
+        'VERSION': 'v2.4'  
+    }
+}  
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'nomadgram.users.serializers.SignUpSerializer'
 }
