@@ -37,7 +37,7 @@ function facebookLogin(access_token){
 }
 
 function usernameLogin(username, password){
-    return function(dispatch){
+    return dispatch => {
         fetch("/rest-auth/login/", {
             method: "POST",
             headers: {
@@ -59,7 +59,7 @@ function usernameLogin(username, password){
 }
 
 function createAccount(username, password, email, name) {
-    return function(dispatch) {
+    return dispatch => {
         fetch("/rest-auth/registration/", {
             method: "POST",
             headers: {
@@ -86,8 +86,9 @@ function createAccount(username, password, email, name) {
 // initial state
 
 const initialState = {
-    isLoggedIn: localStorage.getItem('jwt') ? true : false
-}
+    isLoggedIn: localStorage.getItem('jwt') ? true : false,
+    token: localStorage.getItem('jwt')
+};
 
 // reducer
 
