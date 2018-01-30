@@ -33,13 +33,13 @@ function facebookLogin(access_token){
                 access_token
             })
         })
-    .then(response => response.json())
-    .then(json => {
-        if(json.token){
-            dispatch(saveToken(json.token));
-        }
-    }) 
-    .catch(err => console.log(err));
+        .then(response => response.json())
+        .then(json => {
+            if(json.token){
+                dispatch(saveToken(json.token));
+            }
+        }) 
+        .catch(err => console.log(err));
     }
 }
 
