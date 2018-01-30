@@ -43,6 +43,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "reactotron-react-js": "^1.13.0",
     "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
     "redux-i18n": "^1.5.11",
     "redux-thunk": "^2.2.0",
     "reset-css": "^2.2.1",
