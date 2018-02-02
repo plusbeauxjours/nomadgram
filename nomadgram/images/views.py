@@ -161,9 +161,9 @@ class LikeImage(APIView):
             )
             # like라는 model에 추가를 하는 것이다. 상태가 변하는 것이 아니라. 
 
-            notification_views.create_notification(user, found_image.creator, 'like', found_image)
-
             new_like.save()
+
+            notification_views.create_notification(user, found_image.creator, 'like', found_image)
 
             return Response(status=status.HTTP_201_CREATED)
 

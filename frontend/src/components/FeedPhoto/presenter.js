@@ -21,7 +21,11 @@ const FeedPhoto = (props, context) => {
             </header>
             <img src={props.file} alt={props.caption} />
             <div>
-                <PhotoActions number={props.like_count} />
+                <PhotoActions 
+                    number={props.like_count} 
+                    isLiked={props.is_liked} 
+                    photoId={props.id}
+                />
                 <PhotoComments 
                     caption={props.caption}
                     creator={props.creator.username}
@@ -35,25 +39,26 @@ const FeedPhoto = (props, context) => {
 };
 
 FeedPhoto.propTypes = {
-    creator: PropTypes.shape({
+  creator: PropTypes.shape({
+    profile_image: PropTypes.string,
+    username: PropTypes.string.isRequired
+  }).isRequired,
+  location: PropTypes.string.isRequired,
+  file: PropTypes.string.isRequired,
+  like_count: PropTypes.number.isRequired,
+  caption: PropTypes.string.isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequiored,
+      message: PropTypes.string.isRequired,
+      creator: PropTypes.shape({
         profile_image: PropTypes.string,
         username: PropTypes.string.isRequired
-    }).isRequired,
-    location: PropTypes.string.isRequired,
-    file: PropTypes.string.isRequired,
-    like_count: PropTypes.number.isRequired,
-    caption: PropTypes.string.isRequired,
-    comments: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequiored,
-            message: PropTypes.string.isRequired,
-            creator: PropTypes.shape({
-                profile_image: PropTypes.string,
-                username: PropTypes.string.isRequired
-            }).isRequired
-        })
-    ).isRequired,
-    natural_time: PropTypes.string.isRequired
-}
+      }).isRequired
+    })
+  ).isRequired,
+  natural_time: PropTypes.string.isRequired,
+  is_liked: PropTypes.bool.isRequired
+};
 
 export default FeedPhoto; 

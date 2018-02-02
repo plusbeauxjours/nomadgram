@@ -75,7 +75,7 @@ class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
             'tags',
             'natural_time',
         ) 
-        
+    
 
 class LikeSerializer(serializers.ModelSerializer):
 
