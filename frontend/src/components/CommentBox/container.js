@@ -33,7 +33,7 @@ class Container extends Component {
             event.preventDefault();
             submitComment(comment);
             this.setState({
-                commet: ''
+                comment: ""
             })
         }
     };
