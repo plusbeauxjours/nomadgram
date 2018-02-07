@@ -14,10 +14,11 @@ const FeedPhoto = (props, context) => {
                 <img
                     src={props.creator.profile_image || require("images/noPhoto.jpg")} 
                     alt={props.creator.username}
+                    className={styles.image}
                 />
                 <div>
-                    <span>{props.creator.username}</span>
-                    <span>{props.location}</span>
+                    <span className={styles.creator}>{props.creator.username}</span>
+                    <span className={styles.location}>{props.location}</span>
                 </div>
             </header>
             <img src={props.file} alt={props.caption} />
@@ -37,7 +38,11 @@ const FeedPhoto = (props, context) => {
                 <CommentBox photoId={props.id} />
             </div>
             {props.seeingLikes && (
-                <UserList title={context.t('Likes')} closeLikes={props.closeLikes} />
+                <UserList 
+                    title={context.t('Likes')} 
+                    closeLikes={props.closeLikes} 
+                    userList={props.likes}
+                />
             )}
         </div>
     );
@@ -48,29 +53,37 @@ FeedPhoto.contextTypes = {
 };
 
 FeedPhoto.propTypes = {
-  creator: PropTypes.shape({
-    profile_image: PropTypes.string,
-    username: PropTypes.string.isRequired
-  }).isRequired,
-  location: PropTypes.string.isRequired,
-  file: PropTypes.string.isRequired,
-  like_count: PropTypes.number.isRequired,
-  caption: PropTypes.string.isRequired,
-  comments: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequiored,
-      message: PropTypes.string.isRequired,
-      creator: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    creator: PropTypes.shape({
         profile_image: PropTypes.string,
         username: PropTypes.string.isRequired
-      }).isRequired
-    })
-  ).isRequired,
-  natural_time: PropTypes.string.isRequired,
-  is_liked: PropTypes.bool.isRequired,
-  seeingLikes: PropTypes.bool.isRequired,
-  closeLikes: PropTypes.func.isRequired,
-  openLikes: PropTypes.func.isRequired
+    }).isRequired,
+    location: PropTypes.string.isRequired,
+    file: PropTypes.string.isRequired,
+    like_count: PropTypes.number.isRequired,
+    caption: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(
+        PropTypes.shape({
+        id: PropTypes.number.isRequiored,
+        message: PropTypes.string.isRequired,
+        creator: PropTypes.shape({
+            profile_image: PropTypes.string,
+            username: PropTypes.string.isRequired
+        }).isRequired
+        })
+    ).isRequired,
+    natural_time: PropTypes.string.isRequired,
+    is_liked: PropTypes.bool.isRequired,
+    seeingLikes: PropTypes.bool.isRequired,
+    openLikes: PropTypes.func.isRequired,
+    closeLikes: PropTypes.func.isRequired,
+    likes: PropTypes.arrayOf(
+        PropTypes.shape({
+            profile_image: PropTypes.string,
+            username: PropTypes.string.isRequired,
+            name: PropTypes.string
+        }).isRequired
+    )
 };
 
 export default FeedPhoto; 
