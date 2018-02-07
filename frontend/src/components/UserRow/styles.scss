@@ -1,21 +1,33 @@
 .container {
     display: flex;
     justify-content: space-between;
-    -webkit-box-align: center;
-    padding: 8px 16px;
+    align-items: center;
+    padding: 10px 16px;
     width: 100%;
     box-sizing: border-box;
-    column {
+    border-bottom: 1px solid $light-grey;
+    .column {
         display: flex;
         align-items: center;
         .user {
             margin-left: 10px;
             .username {
                 font-weight: 600;
+                display: block;
+                margin-bottom: 3px;
+            }
+            .name {
+                color: $dark-grey;
             }
         }
         .bigAvatar {
             width: 55px;
+            border-radius: 50%;
+        }
+        .avatar {
+            width: 30px;
+            height: 30px;
+            display: block;
             border-radius: 50%;
         }
         .button {

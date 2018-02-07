@@ -134,7 +134,8 @@ class LikeImage(APIView):
         # 해당 list의 내부의 값도 볼 수가 있다. 
         users = user_models.User.objects.filter(id__in=like_creators_ids)
         # array 안에 있는 user id를 검색한다. 
-        serializer = user_serializers.ListUserSerializer(users, many=True)
+        serializer = user_serializers.ListUserSerializer(
+            users, many=True, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
         
