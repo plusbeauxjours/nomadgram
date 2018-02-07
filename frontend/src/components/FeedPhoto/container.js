@@ -16,13 +16,11 @@ class Container extends Component {
         );
     }
     _openLikes = () => {
-        const { getPhotoLikes, likes } = this.props;
+        const { getPhotoLikes } = this.props;
         this.setState({
             seeingLikes: true
         });
-        if (!likes) {
-            getPhotoLikes();
-        }
+        getPhotoLikes();
     };
     _closeLikes = () => {
         this.setState({
