@@ -66,7 +66,7 @@ function getFeed(){
             return response.json();
         })
         .then(json => {
-            dispatch(setFeed(json))
+            dispatch(setFeed(json));
         });
     }
 }
@@ -163,6 +163,14 @@ function reducer(state = initialState, action) {
 
 // reducer functions
 
+function applySetFeed(state, action) {
+  const { feed } = action;
+  return {
+    ...state,
+    feed
+  };
+}
+
 function applyLikePhoto(state, action){
     const { photoId } = action;
     const { feed } = state;
@@ -185,14 +193,6 @@ function applyUnlikePhoto(state, action){
         return photo;
     });
     return { ...state, feed: updatedFeed };
-}
-
-function applySetFeed(state, action){
-    const { feed } = action;
-    return {
-        ...state, 
-        feed
-    }
 }
 
 function applyAddComment(state, action){

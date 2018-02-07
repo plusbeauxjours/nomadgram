@@ -21,8 +21,8 @@ const UserList = props => (
 UserList.propTypes = {
     title: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
-    users: PropTypes.array,
-    closeLikde: PropTypes.func.isRequired
+    userList: PropTypes.array,
+    closeLikes: PropTypes.func.isRequired
 }
 
 export default UserList;
