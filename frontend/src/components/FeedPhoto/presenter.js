@@ -10,14 +10,14 @@ import UserList from 'components/UserList';
 const FeedPhoto = (props, context) => {
     return (
         <div className={styles.feedPhoto}>
-            <header>
+            <header className={styles.header}>
                 <img
                     src={props.creator.profile_image || require("images/noPhoto.jpg")} 
                     alt={props.creator.username}
                     className={styles.image}
-                />
-                <div>
-                    <span className={styles.creator}>{props.creator.username}</span>
+                />{' '}
+                <div className={styles.headerColumn}>
+                    <span className={styles.creator}>{props.creator.username}</span>{' '}
                     <span className={styles.location}>{props.location}</span>
                 </div>
             </header>
@@ -76,14 +76,7 @@ FeedPhoto.propTypes = {
     is_liked: PropTypes.bool.isRequired,
     seeingLikes: PropTypes.bool.isRequired,
     openLikes: PropTypes.func.isRequired,
-    closeLikes: PropTypes.func.isRequired,
-    likes: PropTypes.arrayOf(
-        PropTypes.shape({
-            profile_image: PropTypes.string,
-            username: PropTypes.string.isRequired,
-            name: PropTypes.string
-        }).isRequired
-    )
+    closeLikes: PropTypes.func.isRequired
 };
 
 export default FeedPhoto; 

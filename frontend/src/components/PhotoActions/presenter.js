@@ -27,7 +27,7 @@ const PhotoActions = (props, context) => (
 PhotoActions.propTypes = {
     number: PropTypes.number.isRequired,
     isLiked: PropTypes.bool.isRequired,
-    photoId: PropTypes.number.isRequried,
+    photoId: PropTypes.number.isRequired,
     handleHeartClick: PropTypes.func.isRequired,
     openLikes: PropTypes.func.isRequired
 };

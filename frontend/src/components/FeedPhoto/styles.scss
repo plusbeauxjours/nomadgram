@@ -18,6 +18,8 @@
         border-bottom: 1px solid $border-color;
         .image {
             width: 30px;
+            height: 30px;
+            display: block;
             border-radius: 50%;
             margin-right: 15px;
         }
