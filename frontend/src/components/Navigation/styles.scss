@@ -15,10 +15,7 @@
         width: 100%;
         height: 77px;
         padding: 25px 0;
-        @include breakpoint('tablet') {
-            height: 20px;
-        }
-        @include breakpoint('phone') {
+        @include breakpoint('phone-tablet') {
             height: 20px;
         }
         .column{

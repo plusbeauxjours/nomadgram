@@ -20,7 +20,7 @@ class Images(APIView):
         
         for following_user in following_users:
 
-            user_images = following_user.images.all()[:3]   # user가 following하는 애들
+            user_images = following_user.images.all()[:5]   # user가 following하는 애들
 
             for image in user_images:
                 
@@ -29,7 +29,7 @@ class Images(APIView):
         # print(following_users) 
         # print(image_list)
 
-        my_images = user.images.all()[:2]
+        my_images = user.images.all()[:5]
 
         for image in my_images:
 
