@@ -15,22 +15,22 @@ urlpatterns = [
         name='follow_user',
     ),
     url(
-        regex='<slug:username>/follow/',
+        regex=r'^(?P<user_id>[0-9]+)/follow/$',
         view=views.FollowUser.as_view(),
         name='follow_user',
     ),
     url(
-        regex='<slug:username>/unfollow/',
+        regex=r'^(?P<user_id>[0-9]+)/unfollow/$',
         view=views.UnFollowUser.as_view(),
         name='unfollow_user',
     ),
     url(
-        regex='<slug:username>/followers/',
+        regex=r'^(?P<username>\w+)/followers/$',
         view=views.UserFollowers.as_view(),
         name='user_follwers',
     ),
     url(
-        regex='<slug:username>/following/',
+        regex=r'^(?P<username>\w+)/following/$',
         view=views.UserFollowing.as_view(),
         name='user_follwing',
     ),
@@ -40,12 +40,12 @@ urlpatterns = [
         name='search',
     ),
     url(    
-        regex='<slug:username>/',  # ordering to bottom bcs of username 'search'
+        regex=r'^(?P<username>\w+)/$',  # ordering to bottom bcs of username 'search'
         view=views.UserProfile.as_view(),
         name='user_profile',
     ),
     url(
-        regex='<slug:username>/password/',
+        regex=r'^(?P<username>\w+)/password/$',
         view=views.ChangePassword.as_view(),
         name='change',
     ),
