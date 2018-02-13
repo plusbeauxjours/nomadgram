@@ -14,14 +14,14 @@ const FeedPhoto = (props, context) => {
                 <img
                     src={props.creator.profile_image || require("images/noPhoto.jpg")} 
                     alt={props.creator.username}
-                    className={styles.image}
+                    className={styles.avator}
                 />{' '}
                 <div className={styles.headerColumn}>
                     <span className={styles.creator}>{props.creator.username}</span>{' '}
                     <span className={styles.location}>{props.location}</span>
                 </div>
             </header>
-            <img src={props.file} alt={props.caption} />
+            <img src={props.file} alt={props.caption} className={styles.image} />
             <div>
                 <PhotoActions 
                     number={props.like_count} 
