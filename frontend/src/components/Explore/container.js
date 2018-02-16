@@ -23,7 +23,6 @@ class Container extends Component {
     }
 
     componentWillReceiveProps = nextProps => {
-        console.log(nextProps)
         if(nextProps.userList) {
             this.setState({
                 loading: false

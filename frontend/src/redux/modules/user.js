@@ -145,6 +145,7 @@ function getPhotoLikes(photoId) {
             return response.json();
         })
         .then(json => {
+            console.log(json);
             dispatch(setUserList(json));
         });
     };
