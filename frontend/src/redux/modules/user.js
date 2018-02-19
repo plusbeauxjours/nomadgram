@@ -8,7 +8,6 @@ const SET_USER_LIST = "SET_USER_LIST";
 const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_EXPLORE = "SET_EXPLORE";
-const SET_NOTIFICATION = "SET_NOTIFICATION";
 
 // action creators
 
@@ -50,13 +49,6 @@ function setExplore(userList) {
     return {
         type: SET_EXPLORE,
         userList
-    }
-}
-
-function setNotification(notification) {
-    return {
-        type: SET_NOTIFICATION,
-        notification
     }
 }
 
@@ -213,26 +205,6 @@ function getExplore() {
     };
 }
 
-function getNotification() {
-    return (dispatch, getState) => {
-        const { user: { token } } = getState();
-        fetch(`/notifications/`, {
-            method: "GET",
-            headers: {
-                Authorization: `JWT ${token}`,
-                "Content-Type": "application/json"
-            }
-        })
-        .then(response => {
-            if (response.status === 401) {
-                dispatch(logout());
-            }
-            return response.json();
-        })
-        .then(json => dispatch(setNotification(json)));
-    };
-}
-
 // initial state
 
 const initialState = {
@@ -256,8 +228,6 @@ function reducer(state = initialState, action) {
             return applyUnfollowUser(state, action);
         case SET_EXPLORE:
             return applySetExplore(state, action);
-        case SET_NOTIFICATION:
-            return applySetNotification(state, action);
         default: 
             return state;
     }
@@ -322,14 +292,6 @@ function applySetExplore(state, action) {
     }
 }
 
-function applySetNotification(state, action) {
-    const { notification } = action;
-    return {
-        ...state,
-        notification
-    }
-}
-
 // exports
 
 const actionCreators ={
@@ -341,7 +303,6 @@ const actionCreators ={
     followUser,
     unfollowUser,
     getExplore,
-    getNotification
 }
 
 export { actionCreators };

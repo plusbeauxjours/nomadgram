@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import "./styles.scss";
 import Footer from "components/Footer";
 import Auth from 'components/Auth';
+import Notification from 'components/Notification';
 import Navigation from 'components/Navigation';
 import Feed from 'components/Feed';
 import Explore from 'components/Explore';
