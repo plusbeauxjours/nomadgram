@@ -7,36 +7,39 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
+    
     .box {
         @include boxBorder(no);
+        margin-left: 233px;
+        position: absolute;
+        top: 95px;
+        max-height: 362px;
+        min-height: 100px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0;
+        background: white;
+        border: solid 1px #e6e6e6;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .0975);
+        box-shadow: 0 0 5px rgba(0, 0, 0, .0975);
+        display: block;
+        white-space: normal;
         width: 100%;
         max-width: $max-card-width;
-        .header {
-            display: flex;
-            padding: 14px 0;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 2px solid $light-grey;
-            svg {
-                cursor: pointer;
-            }
-            .title {
-                order: 1;
-                margin-left: auto;
-                margin-right: auto;
-                font-weight: 600;
-                font-size: $big-font-size;
-            }
-            .icon {
-                cursor: pointer;
-            }
-        }
         .content {
             min-height: 300px;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: center;
             flex-direction: column;
         }
     }
 }
 
+.notification {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

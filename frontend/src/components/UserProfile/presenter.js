@@ -4,7 +4,7 @@ import styles from "./styles.scss";
 
 const UserProfile = (props, context) => {
   return (
-    <div>
+    <div className={styles.profile}>
         {props.username}
     </div>
   );

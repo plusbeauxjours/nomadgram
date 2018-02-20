@@ -59,7 +59,7 @@ function reducer(state = initialState, action) {
 function applySetNotification(state, action){
     const { notification } = action;
     return {
-        ...state, 
+        ...state,
         notification
     }
 }

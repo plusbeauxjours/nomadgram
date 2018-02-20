@@ -5,10 +5,12 @@ class Container extends Component {
     state = {
         loading: true
     };
-    componenetDidMount() {
+    componentDidMount() {
         const { notification } = this.props;
         if (notification) {
-          this.setState({ loading: false });
+            this.setState({ 
+                loading: false 
+            });
         }
     }
     componentWillReceiveProps(nextProps) {

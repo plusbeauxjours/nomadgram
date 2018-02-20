@@ -1,13 +1,11 @@
 import { connect } from 'react-redux';
 import Container from './container';
-import { actionCreators as notificationActions } from 'redux/modules/notifications';
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
+    const { notifications: { notification } } = state;
     return {
-        getNotification: () => {
-            dispatch(notificationActions.getNotification());
-        }
+        notification
     }
 }
 
-export default connect(null, mapDispatchToProps)(Container);
+export default connect(mapStateToProps)(Container);
