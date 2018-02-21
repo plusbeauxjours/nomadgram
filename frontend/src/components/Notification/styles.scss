@@ -8,7 +8,6 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    
     .box {
         @include boxBorder(no);
         margin-left: 233px;
@@ -31,15 +30,35 @@
         .content {
             min-height: 300px;
             display: flex;
-            align-items: center;
-            justify-content: center;
             flex-direction: column;
+            .list {
+                justify-content: center;
+                align-items: center;
+                .avatar {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                }
+                .row {
+                    display: flex;
+                    align-items: center;
+                    padding: 10px 16px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    border-bottom: 1px solid $light-grey;
+                    .username {
+                        font-weight: 600;
+                    }
+                    .message {
+
+                    }
+                    .comment {
+
+                    }
+                }
+            }
         }
     }
 }
 
-.notification {
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 import Loading from 'components/Loading';
 
-const Notification = props => (
+const Notification = (props, context) => (
   <div className={styles.container} onClick={props.closeNotifications}>
     <div className={styles.box}>
       <span className={styles.content}>
@@ -18,9 +18,8 @@ const Notification = props => (
 );
 
 const LoadingNotification = props => (
-  <div className={styles.notification}>
+  <div className={styles.loading}>
     <Loading />
-    spiner
   </div>
 );
 
@@ -28,7 +27,8 @@ const RenderNotification = (props, context) => (
   props.potato.map(notification => (
     <ListNotification 
       id={notification.id} 
-      creatorname={notification.creator.username} 
+      username={notification.creator.username} 
+      profile={notification.creator.profile_image}
       notification_type={notification.notification_type}
       comment={notification.comment}
       image={notification.image}
@@ -38,21 +38,60 @@ const RenderNotification = (props, context) => (
 )
 
 const ListNotification = (props, context) => (
-  <div className={styles.notification}>
-    <h1>{props.creatorname}{props.notification_type}{props.comment}</h1>
-  </div>
+  <ul className={styles.list}>
+    <img
+      src={props.profile || require("images/noPhoto.jpg")}
+      alt={props.username}
+      className={styles.avatar}
+    />
+    {(() => {
+      switch (props.notification_type) {
+        case "comment":
+          return (
+            <li className={styles.row}>
+              <span className={styles.username}>{props.username}</span>
+              <span className={styles.message}>님이 댓글을 남겼습니다.:</span>
+              <span className={styles.comment}>{props.comment}</span>
+            </li>
+          );
+        case "like":
+          return (
+            <li className={styles.row}>
+              <span className={styles.username}>{props.username}</span>
+              <span className={styles.message}>님이 회원님의 사진을 좋아합니다.</span>
+            </li>
+          );
+        case "follow":
+          return (
+            <li className={styles.row}>
+              <span className={styles.username}>{props.username}</span>
+              <span className={styles.message}>님이 회원님을 팔로우하기 시작했습니다.</span>
+            </li>
+          );
+        default:
+          return "err";
+      }
+    })()}
+  </ul>
 );
 
 Notification.propTypes = {
-  creatorname: PropTypes.string.isRequired,
-  notification_type: PropTypes.string.isRequired,
-  comment: PropTypes.string,
-  image: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
+  onClick: PropTypes.func,
+  potato: PropTypes.array
 };
 
 RenderNotification.propTypes = {
-  list: PropTypes.array
+  creator: PropTypes.shape({
+    profile: PropTypes.string,
+    username: PropTypes.string.isRequired
+  }),
+  notification_type: PropTypes.string,
+  comment: PropTypes.string,
+  image: PropTypes.string,
+  key: PropTypes.number
+}
+
+ListNotification.propTypes = {
 }
 
 export default Notification;
