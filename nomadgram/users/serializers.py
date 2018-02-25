@@ -43,10 +43,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
     
     def get_following(self, obj):
         if 'request' in self.context:
-            requst = self.context['requext']
+            request = self.context['request']
             if obj in request.user.following.all():
                 return True
-                
         return False
 
 class ListUserSerializer(serializers.ModelSerializer):

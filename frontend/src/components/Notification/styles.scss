@@ -45,6 +45,7 @@
                     margin-left: 10px;
                 }
                 .row {
+                    justify-content: center;
                     align-items: center;
                     flex-wrap: wrap;
                     width: 80%;
@@ -61,7 +62,6 @@
                     .comment {
                         font-size: $normal-font-size;
                     }
-
                 }
                 .button {
                     @include blueButton();
