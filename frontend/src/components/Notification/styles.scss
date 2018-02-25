@@ -26,36 +26,63 @@
         display: block;
         white-space: normal;
         width: 100%;
-        max-width: $max-card-width;
+        max-width: 520px;
         .content {
             min-height: 300px;
-            display: flex;
             flex-direction: column;
             .list {
-                justify-content: center;
+                display: flex;
+                height: 50px;
                 align-items: center;
+                border-bottom: 1px solid $light-grey;
+                @include breakpoint('phone-tablet') {
+                    border-bottom: 0;
+                }
                 .avatar {
                     width: 30px;
-                    height: 30px;
+                    height: 27px;
                     border-radius: 50%;
+                    margin-left: 10px;
                 }
                 .row {
-                    display: flex;
                     align-items: center;
+                    flex-wrap: wrap;
+                    width: 80%;
                     padding: 10px 16px;
-                    width: 100%;
+                    word-break: break-all;
                     box-sizing: border-box;
-                    border-bottom: 1px solid $light-grey;
                     .username {
                         font-weight: 600;
+                        font-size: $normal-font-size;
                     }
                     .message {
-
+                        font-size: $normal-font-size;
                     }
                     .comment {
-
+                        font-size: $normal-font-size;
                     }
+
                 }
+                .button {
+                    @include blueButton();
+                    width: 17%;
+                    float: right;
+                    margin-right: 5px;
+                }
+                .image {
+                    justify-content: center;
+                    display: block;
+                    width: 45px;
+                    height: 45px;
+                    background-color: #e2e2e2;
+                    float: right;
+                }
+            }
+            .loading {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                display: flex;
             }
         }
     }

@@ -16,7 +16,7 @@ class User(AbstractUser):
 
     # First Name and Last Name do not cover name patterns
     # around the globe.
-    profile_image = models.ImageField(null=True)
+    profile_image = models.ImageField(null=True, blank=True)
     name = models.CharField(_('Name of User'), blank=True, max_length=255)
     website = models.URLField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
@@ -24,8 +24,9 @@ class User(AbstractUser):
     gender = models.CharField(max_length=80, choices=GENDER_CHOICES, null=True)
     followers = models.ManyToManyField('self', blank=True)
     following = models.ManyToManyField('self', blank=True)
+    push_token = models.TextField(default='')
 
-    def __str__(self):
+    def __str__(self): 
         return self.username
 
     @property
