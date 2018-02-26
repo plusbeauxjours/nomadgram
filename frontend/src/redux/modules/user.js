@@ -8,6 +8,7 @@ const SET_USER_LIST = "SET_USER_LIST";
 const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_EXPLORE = "SET_EXPLORE";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 // action creators
 
@@ -49,6 +50,13 @@ function setExplore(userList) {
     return {
         type: SET_EXPLORE,
         userList
+    }
+}
+
+function setUserProfile(userId) {
+    return {
+        type: SET_USER_PROFILE,
+        userId
     }
 }
 
@@ -205,6 +213,27 @@ function getExplore() {
     };
 }
 
+function getUserProfile(userId) {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+        fetch(`/users/${userId}/`, {
+          method: "GET",
+          headers: {
+            Authorization: `JWT ${token}`,
+            "Content-Type": "application/json"
+          }
+        })
+          .then(response => {
+            if (response.status === 401) {
+              dispatch(logout());
+            }
+            return response.json();
+          })
+          .then(json => console.log(json))
+          .then(json => dispatch(setUserProfile(userId, json)));
+    };
+}
+
 // initial state
 
 const initialState = {
@@ -228,6 +257,8 @@ function reducer(state = initialState, action) {
             return applyUnfollowUser(state, action);
         case SET_EXPLORE:
             return applySetExplore(state, action);
+        case SET_USER_PROFILE:
+            return applySetUserProfile(state, action);
         default: 
             return state;
     }
@@ -292,6 +323,14 @@ function applySetExplore(state, action) {
     }
 }
 
+function applySetUserProfile(state, action) {
+    const { userId } = action;
+    return {
+        ...state, 
+        userId        
+    }
+}
+
 // exports
 
 const actionCreators ={
@@ -303,6 +342,7 @@ const actionCreators ={
     followUser,
     unfollowUser,
     getExplore,
+    getUserProfile
 }
 
 export { actionCreators };
