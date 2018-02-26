@@ -45,10 +45,10 @@ function setUnfollowUser(userId) {
     }
 }
 
-function setUserProfile(userId) {
+function setUserProfile(userProfile) {
     return {
         type: SET_USER_PROFILE,
-        userId
+        userProfile
     }
 }
 
@@ -204,10 +204,10 @@ function getExplore() {
     };
 }
 
-function getUserProfile(userId) {
+function getUserProfile(username) {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
-        fetch(`/users/${userId}/`, {
+        fetch(`/users/${username}/`, {
             method: "GET",
             headers: {
                 Authorization: `JWT ${token}`,
@@ -220,9 +220,9 @@ function getUserProfile(userId) {
             }
             return response.json()
         })
-        .then(userId => {
-            console.log(userId);
-            dispatch(setUserProfile(userId));
+        .then(json => {
+            console.log(json);
+            dispatch(setUserProfile(json));
             });
     };
 }
@@ -307,10 +307,10 @@ function applyUnfollowUser(state, action) {
 }
 
 function applySetUserProfile(state, action) {
-    const { userId } = action;
+    const { userProfile } = action;
     return {
         ...state, 
-        userId        
+        userProfile        
     }
 }
 

@@ -5,7 +5,7 @@ import { actionCreators as userActions } from "redux/modules/user";
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getUserProfile: () => {
-            dispatch(userActions.getUserProfile(ownProps.userId));
+            dispatch(userActions.getUserProfile(ownProps.username));
         }
     };
 };
