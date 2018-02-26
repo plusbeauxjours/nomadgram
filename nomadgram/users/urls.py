@@ -10,7 +10,7 @@ urlpatterns = [
         name='explore_users'
     ),
     url(
-        regex='<slug:username>/profileimage/',
+        regex=r'^(?P<username>\w+)/profileimage/',
         view=views.FollowUser.as_view(),
         name='follow_user',
     ),
@@ -40,7 +40,7 @@ urlpatterns = [
         name='search',
     ),
     url(    
-        regex=r'^(?P<user_id>[0-9]+)/$',  # ordering to bottom bcs of username 'search'
+        regex=r'^(?P<username>\w+)/$',  # ordering to bottom bcs of username 'search'
         view=views.UserProfile.as_view(),
         name='user_profile',
     ),

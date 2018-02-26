@@ -25,8 +25,7 @@ const RenderUserProfile = props => (
 );
 
 const ListUserProfile = props => {
-  <div>
-  </div>
+  <div>profile</div>
 }
 
 UserProfile.contextTypes = {

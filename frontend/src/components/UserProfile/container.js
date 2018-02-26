@@ -9,9 +9,9 @@ class Container extends Component {
     static propTypes = {
         getUserProfile: PropTypes.func.isRequired
     };
-    ComponentDidMount(){
+    componentDidMount(userId){
         const { getUserProfile } = this.props;
-        getUserProfile();
+        getUserProfile(userId);
     }
     render() {
         return <UserProfile {...this.state} />;

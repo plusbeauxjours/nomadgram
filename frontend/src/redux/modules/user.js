@@ -7,7 +7,6 @@ const LOGOUT = 'LOGOUT';
 const SET_USER_LIST = "SET_USER_LIST";
 const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
-const SET_EXPLORE = "SET_EXPLORE";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 // action creators
@@ -43,13 +42,6 @@ function setUnfollowUser(userId) {
     return {
         type: UNFOLLOW_USER,
         userId
-    }
-}
-
-function setExplore(userList) {
-    return {
-        type: SET_EXPLORE,
-        userList
     }
 }
 
@@ -197,7 +189,6 @@ function getExplore() {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
         fetch(`/users/explore/`, {
-            method: "GET",
             headers: {
                 Authorization: `JWT ${token}`,
                 "Content-Type": "application/json"
@@ -209,7 +200,7 @@ function getExplore() {
             } 
             return response.json()
         })
-        .then(json => dispatch(setExplore(json)));
+        .then(json => dispatch(setUserList(json)));
     };
 }
 
@@ -217,20 +208,22 @@ function getUserProfile(userId) {
     return (dispatch, getState) => {
         const { user: { token } } = getState();
         fetch(`/users/${userId}/`, {
-          method: "GET",
-          headers: {
-            Authorization: `JWT ${token}`,
-            "Content-Type": "application/json"
-          }
-        })
-          .then(response => {
-            if (response.status === 401) {
-              dispatch(logout());
+            method: "GET",
+            headers: {
+                Authorization: `JWT ${token}`,
+                "Content-Type": "application/json"
             }
-            return response.json();
-          })
-          .then(json => console.log(json))
-          .then(json => dispatch(setUserProfile(userId, json)));
+        })
+        .then(response => {
+            if (response.status === 401) {
+                dispatch(logout());
+            }
+            return response.json()
+        })
+        .then(userId => {
+            console.log(userId);
+            dispatch(setUserProfile(userId));
+            });
     };
 }
 
@@ -255,8 +248,6 @@ function reducer(state = initialState, action) {
             return applyFollowUser(state, action);
         case UNFOLLOW_USER:
             return applyUnfollowUser(state, action);
-        case SET_EXPLORE:
-            return applySetExplore(state, action);
         case SET_USER_PROFILE:
             return applySetUserProfile(state, action);
         default: 
@@ -313,14 +304,6 @@ function applyUnfollowUser(state, action) {
         return user;
     });
     return { ...state, userList: updatedUserList };
-}
-
-function applySetExplore(state, action) {
-    const { userList } = action;
-    return {
-        ...state, 
-        userList
-    }
 }
 
 function applySetUserProfile(state, action) {
