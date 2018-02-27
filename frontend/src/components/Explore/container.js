@@ -6,6 +6,7 @@ class Container extends Component {
     state ={
         loading: true
     };
+    
     static propTypes = {
         getExplore: PropTypes.func.isRequired,
         userList: PropTypes.array

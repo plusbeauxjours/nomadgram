@@ -20,13 +20,10 @@ const LoadingUserProfile = props => (
 
 const RenderUserProfile = props => (
   <div className={styles.profile}>
-    <ListUserProfile />
+    <div>profile</div>
   </div>
 );
 
-const ListUserProfile = props => {
-  <div>profile</div>
-}
 
 UserProfile.contextTypes = {
   t: PropTypes.func.isRequired

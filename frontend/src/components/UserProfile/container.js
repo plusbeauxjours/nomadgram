@@ -6,13 +6,31 @@ class Container extends Component {
     state = {
         loading: true
     };
+
     static propTypes = {
         getUserProfile: PropTypes.func.isRequired
     };
+
     componentDidMount(){
         const { getUserProfile } = this.props;
-        getUserProfile();
+        if(!this.props.userProfile){
+            getUserProfile();
+        } else {
+            this.setState({ 
+                loading: false 
+            });
+        }
     }
+
+    componentWillReceiveProps = nextProps => {
+        console.log(nextProps)
+        if(nextProps.userProfile) {
+            this.setState({
+                loading: false
+            });
+        }
+    }
+    
     render() {
         return <UserProfile {...this.state} />;
     }
