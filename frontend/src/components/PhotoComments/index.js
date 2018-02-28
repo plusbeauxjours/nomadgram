@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
@@ -18,11 +19,13 @@ const PhotoComments = props => (
 );
 
 const Comment = props => (
-    <li className={styles.comment}>
-        <span className={styles.username}>{props.username}</span>{' '}
-        <span className={styles.message}>{props.comment}</span>
-    </li>
-)
+  <li className={styles.comment}>
+    <Link to={{ pathname: `/${props.username}` }}>
+      <span className={styles.username}>{props.username}</span>{" "}
+    </Link>
+    <span className={styles.message}>{props.comment}</span>
+  </li>
+);
 
 PhotoComments.propTypes = {
     caption: PropTypes.string.isRequired,

@@ -5,19 +5,19 @@ import styles from "./styles.scss";
 
 const UserRow = (props, context) => (
   <div className={styles.container}>
-    <div className={styles.column}>
-      <Link to={{ pathname: `/${props.user.username}` }}>
+    <Link to={{ pathname: `/${props.user.username}` }}>
+      <div className={styles.column}>
         <img
           src={props.user.profile_image || require("images/noPhoto.jpg")}
           alt={props.user.username}
           className={props.big ? styles.bigAvatar : styles.avatar}
         />
-      </Link>
-      <div className={styles.user}>
-        <span className={styles.username}>{props.user.username}</span>
-        <span className={styles.name}>{props.user.name}</span>
+        <div className={styles.user}>
+          <span className={styles.username}>{props.user.username}</span>
+          <span className={styles.name}>{props.user.name}</span>
+        </div>
       </div>
-    </div>
+    </Link>
     <span className={styles.column}>
       <button className={styles.button} onClick={props.handleClick}>
         {props.user.following ? context.t("Unfollow") : context.t("Follow")}

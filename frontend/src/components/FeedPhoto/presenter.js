@@ -5,47 +5,31 @@ import PhotoActions from 'components/PhotoActions';
 import PhotoComments from "components/PhotoComments";
 import TimeStamp from 'components/TimeStamp';
 import CommentBox from 'components/CommentBox';
+import { Link } from "react-router-dom";
 import UserList from 'components/UserList';
 
 const FeedPhoto = (props, context) => {
-    return (
-        <div className={styles.feedPhoto}>
-            <header className={styles.header}>
-                <img
-                    src={props.creator.profile_image || require("images/noPhoto.jpg")} 
-                    alt={props.creator.username}
-                    className={styles.avator}
-                />{' '}
-                <div className={styles.headerColumn}>
-                    <span className={styles.creator}>{props.creator.username}</span>{' '}
-                    <span className={styles.location}>{props.location}</span>
-                </div>
-            </header>
-            <img src={props.file} alt={props.caption} className={styles.image} />
-            <div>
-                <PhotoActions 
-                    number={props.like_count} 
-                    isLiked={props.is_liked} 
-                    photoId={props.id}
-                    openLikes={props.openLikes}
-                />
-                <PhotoComments 
-                    caption={props.caption}
-                    creator={props.creator.username}
-                    comments={props.comments}
-                />
-                <TimeStamp time={props.natural_time} />
-                <CommentBox photoId={props.id} />
+    return <div className={styles.feedPhoto}>
+        <Link to={{ pathname: `/${props.creator.username}` }}>
+          <header className={styles.header}>
+            <img src={props.creator.profile_image || require("images/noPhoto.jpg")} alt={props.creator.username} className={styles.avator} /> <div className={styles.headerColumn}>
+              <span className={styles.creator}>
+                {props.creator.username}
+              </span> <span className={styles.location}>
+                {props.location}
+              </span>
             </div>
-            {props.seeingLikes && (
-                <UserList 
-                    title={context.t('Likes')} 
-                    closeLikes={props.closeLikes} 
-                    userList={props.likes}
-                />
-            )}
+          </header>
+        </Link>
+        <img src={props.file} alt={props.caption} className={styles.image} />
+        <div>
+          <PhotoActions number={props.like_count} isLiked={props.is_liked} photoId={props.id} openLikes={props.openLikes} />
+          <PhotoComments caption={props.caption} creator={props.creator.username} comments={props.comments} />
+          <TimeStamp time={props.natural_time} />
+          <CommentBox photoId={props.id} />
         </div>
-    );
+        {props.seeingLikes && <UserList title={context.t("Likes")} closeLikes={props.closeLikes} userList={props.likes} />}
+      </div>;
 };
 
 FeedPhoto.contextTypes = {

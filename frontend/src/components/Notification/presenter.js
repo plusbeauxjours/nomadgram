@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import styles from './styles.scss';
 import Loading from 'components/Loading';
 import TimeStamp from 'components/TimeStamp';
@@ -35,48 +36,52 @@ const RenderNotification = (props, context) => (
 
 const ListNotification = (props, context) => (
   <div className={styles.list}>
-    <img
-      src={props.creator.profile_image || require("images/noPhoto.jpg")}
-      alt={props.creator.username}
-      className={styles.avatar}
-    />
+    <Link to={{ pathname: `/${props.creator.username}` }}>
+      <img
+        src={props.creator.profile_image || require("images/noPhoto.jpg")}
+        alt={props.creator.username}
+        className={styles.avatar}
+      />
+    </Link>
     {(() => {
       switch (props.notification_type) {
         case "comment":
-          return (
-          <div className={styles.row}>
-              <span className={styles.username}>
-                {props.creator.username}
-              </span>
+          return <div className={styles.row}>
+              <Link to={{ pathname: `/${props.creator.username}` }}>
+                <span className={styles.username}>
+                  {props.creator.username}
+                </span>
+              </Link>
               <span className={styles.message}>
                 {context.t("님이 댓글을 남겼습니다.: ")}
               </span>
               <span className={styles.comment}>{props.comment}</span>
-              <TimeStamp time={props.natural_time} className={styles.time}/>
-            </div>
-          );
+              <TimeStamp time={props.natural_time} className={styles.time} />
+            </div>;
         case "like":
-          return (
-            <div className={styles.row}>
-              <span className={styles.username}>
-                {props.creator.username}
-              </span>
+          return <div className={styles.row}>
+              <Link to={{ pathname: `/${props.creator.username}` }}>
+                <span className={styles.username}>
+                  {props.creator.username}
+                </span>
+              </Link>
               <span className={styles.message}>
                 {context.t("님이 회원님의 사진을 좋아합니다.")}
               </span>
-              <TimeStamp time={props.natural_time} className={styles.time}/>
-            </div>
-          );
+              <TimeStamp time={props.natural_time} className={styles.time} />
+            </div>;
         case "follow":
-          return (
-            <div className={styles.row}>
-              <span className={styles.username}>{props.creator.username}</span>
+          return <div className={styles.row}>
+              <Link to={{ pathname: `/${props.creator.username}` }}>
+                <span className={styles.username}>
+                  {props.creator.username}
+                </span>
+              </Link>
               <span className={styles.message}>
                 {context.t("님이 회원님을 팔로우하기 시작했습니다.")}
               </span>
-              <TimeStamp time={props.natural_time} className={styles.time}/>
-            </div>
-          );
+              <TimeStamp time={props.natural_time} className={styles.time} />
+            </div>;
         default:
           return "err";
       }
