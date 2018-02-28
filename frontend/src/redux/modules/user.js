@@ -220,10 +220,7 @@ function getUserProfile(username) {
             }
             return response.json();
         })
-        .then(json => {
-            console.log(json);
-            dispatch(setUserProfile(json));
-            });
+        .then(json => dispatch(setUserProfile(json)));
     };
 }
 

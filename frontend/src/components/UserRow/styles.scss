@@ -29,11 +29,13 @@
         .bigAvatar {
             width: 55px;
             height: 55px;
+            object-fit: cover;
             border-radius: 50%;
         }
         .avatar {
             width: 30px;
             height: 30px;
+            object-fit: cover;
             display: block;
             border-radius: 50%;
         }

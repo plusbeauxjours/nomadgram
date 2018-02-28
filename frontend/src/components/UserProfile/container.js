@@ -8,7 +8,7 @@ class Container extends Component {
     };
 
     static propTypes = {
-        getUserProfile: PropTypes.func.isRequired
+        getUserProfile: PropTypes.func.isRequired,
     };
 
     componentDidMount(){
@@ -32,7 +32,8 @@ class Container extends Component {
     }
     
     render() {
-        return <UserProfile {...this.state} />;
+        const { userProfile } = this.props;
+        return <UserProfile {...this.state} userProfile={userProfile} />;
     }
 }
 

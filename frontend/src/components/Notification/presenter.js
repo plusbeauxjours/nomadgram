@@ -5,14 +5,14 @@ import styles from './styles.scss';
 import Loading from 'components/Loading';
 import TimeStamp from 'components/TimeStamp';
 
-const Notification = (props, context) => (
+const Notification = props => (
   <div className={styles.container} onClick={props.closeNotifications}>
     <div className={styles.box}>
       <span className={styles.content}>
         {props.loading ?
           <LoadingNotification />
         :
-          <RenderNotification potato={props.notification} {...props} />
+          <RenderNotification potato={props.notification} />
         }
       </span>
     </div>
@@ -25,7 +25,7 @@ const LoadingNotification = props => (
   </div>
 );
 
-const RenderNotification = (props, context) => (
+const RenderNotification = props => (
   props.potato.map(notification => (
     <ListNotification 
       {...notification}

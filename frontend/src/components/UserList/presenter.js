@@ -22,7 +22,12 @@ const UserList = props => (
 );
 
 const RenderUsers = props => 
-    props.list.map(user => <UserRow user={user} key={user.id} />);
+    props.list.map(user => 
+        <UserRow 
+            user={user} 
+            key={user.id} 
+        />
+    );
 
 RenderUsers.propTypes = {
     list: PropTypes.array
