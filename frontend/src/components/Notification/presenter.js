@@ -36,7 +36,10 @@ const RenderNotification = (props, context) => (
 
 const ListNotification = (props, context) => (
   <div className={styles.list}>
-    <Link to={{ pathname: `/${props.creator.username}` }}>
+    <Link
+      to={{ pathname: `/${props.creator.username}` }}
+      style={{ textDecoration: "none", color: "black" }}
+    >
       <img
         src={props.creator.profile_image || require("images/noPhoto.jpg")}
         alt={props.creator.username}
@@ -46,8 +49,12 @@ const ListNotification = (props, context) => (
     {(() => {
       switch (props.notification_type) {
         case "comment":
-          return <div className={styles.row}>
-              <Link to={{ pathname: `/${props.creator.username}` }}>
+          return (
+            <div className={styles.row}>
+              <Link 
+                to={{ pathname: `/${props.creator.username}` }}
+                style={{ textDecoration: 'none', color:'black' }}
+              >
                 <span className={styles.username}>
                   {props.creator.username}
                 </span>
@@ -57,10 +64,15 @@ const ListNotification = (props, context) => (
               </span>
               <span className={styles.comment}>{props.comment}</span>
               <TimeStamp time={props.natural_time} className={styles.time} />
-            </div>;
+            </div>
+          );
         case "like":
-          return <div className={styles.row}>
-              <Link to={{ pathname: `/${props.creator.username}` }}>
+          return (
+            <div className={styles.row}>
+              <Link 
+                to={{ pathname: `/${props.creator.username}` }}
+                style={{ textDecoration: 'none', color:'black' }}
+              >
                 <span className={styles.username}>
                   {props.creator.username}
                 </span>
@@ -69,10 +81,15 @@ const ListNotification = (props, context) => (
                 {context.t("님이 회원님의 사진을 좋아합니다.")}
               </span>
               <TimeStamp time={props.natural_time} className={styles.time} />
-            </div>;
+            </div>
+          );
         case "follow":
-          return <div className={styles.row}>
-              <Link to={{ pathname: `/${props.creator.username}` }}>
+          return (
+            <div className={styles.row}>
+              <Link 
+                to={{ pathname: `/${props.creator.username}` }}
+                style={{ textDecoration: 'none', color:'black' }}
+              >
                 <span className={styles.username}>
                   {props.creator.username}
                 </span>
@@ -81,7 +98,8 @@ const ListNotification = (props, context) => (
                 {context.t("님이 회원님을 팔로우하기 시작했습니다.")}
               </span>
               <TimeStamp time={props.natural_time} className={styles.time} />
-            </div>;
+            </div>
+          );
         default:
           return "err";
       }

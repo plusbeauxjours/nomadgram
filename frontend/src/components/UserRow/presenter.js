@@ -5,7 +5,10 @@ import styles from "./styles.scss";
 
 const UserRow = (props, context) => (
   <div className={styles.container}>
-    <Link to={{ pathname: `/${props.user.username}` }}>
+    <Link
+      to={{ pathname: `/${props.user.username}` }}
+      style={{ textDecoration: 'none', color:'black' }}
+    >
       <div className={styles.column}>
         <img
           src={props.user.profile_image || require("images/noPhoto.jpg")}

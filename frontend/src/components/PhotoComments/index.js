@@ -20,8 +20,11 @@ const PhotoComments = props => (
 
 const Comment = props => (
   <li className={styles.comment}>
-    <Link to={{ pathname: `/${props.username}` }}>
-      <span className={styles.username}>{props.username}</span>{" "}
+    <Link
+        to={{ pathname: `/${props.username}` }}
+        style={{ textDecoration: "none", color: "black" }}
+    >
+        <span className={styles.username}>{props.username}</span>{" "}
     </Link>
     <span className={styles.message}>{props.comment}</span>
   </li>

@@ -10,7 +10,10 @@ import UserList from 'components/UserList';
 
 const FeedPhoto = (props, context) => {
     return <div className={styles.feedPhoto}>
-        <Link to={{ pathname: `/${props.creator.username}` }}>
+        <Link 
+            to={{ pathname: `/${props.creator.username}` }}
+            style={{ textDecoration: 'none', color:'black' }}
+        >
           <header className={styles.header}>
             <img src={props.creator.profile_image || require("images/noPhoto.jpg")} alt={props.creator.username} className={styles.avator} /> <div className={styles.headerColumn}>
               <span className={styles.creator}>
