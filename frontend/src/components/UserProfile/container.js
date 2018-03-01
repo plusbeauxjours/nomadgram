@@ -11,6 +11,19 @@ class Container extends Component {
         getUserProfile: PropTypes.func.isRequired,
     };
 
+    render() {
+        const { userProfile } = this.props;
+        return (
+            <UserProfile 
+                {...this.props}
+                {...this.state} 
+                userProfile={userProfile} 
+                mouseOver={this._mouseOver}
+                mouseOut={this._mouseOut}
+            />
+        );
+    }
+
     componentDidMount(){
         const { getUserProfile } = this.props;
         if(!this.props.userProfile){
@@ -23,17 +36,16 @@ class Container extends Component {
     }
 
     componentWillReceiveProps = nextProps => {
-        console.log(nextProps)
-        if(nextProps.userProfile) {
+        console.log(nextProps.userProfile)
+        console.log(this.props.userProfile);
+        const { getUserProfile } = this.props;
+        if(!this.props.userProfile == nextProps.userProfile) {
+            getUserProfile();
+        } else {
             this.setState({
                 loading: false
             });
         }
-    }
-    
-    render() {
-        const { userProfile } = this.props;
-        return <UserProfile {...this.state} userProfile={userProfile} />;
     }
 }
 

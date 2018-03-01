@@ -211,7 +211,8 @@ function getUserProfile(username) {
         fetch(`/users/${username}/`, {
             method: "GET",
             headers: {
-                Authorization: `JWT ${token}`
+                Authorization: `JWT ${token}`,
+                "Content-Type": "application/json"
             }
         })
         .then(response => {

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Loading from "components/Loading";
+import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
 
 
@@ -28,29 +29,35 @@ const RenderUserProfile = (props, context) => (
         className={styles.avatar}
       />
       <div className={styles.card}>
-        <div className={styles.naming}>
+        <div className={styles.username}>
           {props.userProfile.username}
           {props.userProfile.is_self}
           {props.userProfile.following}
         </div>
         <ul className={styles.countingfolder}>
           <li className={styles.counting}>
-            {props.userProfile.post_count}{' '}
-            {context.t("posts")}
+            <span className={styles.number}>
+              {props.userProfile.post_count}{" "}
+            </span>
+            <span>{context.t("posts")}</span>
           </li>
           <li className={styles.counting}>
-            {props.userProfile.followers_count}{' '}
-            {context.t("followers")}
+            <span className={styles.number}>
+              {props.userProfile.followers_count}{" "}
+            </span>
+            <span>{context.t("followers")}</span>
           </li>
           <li className={styles.counting}>
-            {props.userProfile.following_count}{' '}
-            {context.t("following")}
+            <span className={styles.number}>
+              {props.userProfile.following_count}{" "}
+            </span>
+            <span>{context.t("following")}</span>
           </li>
         </ul>
         <div className={styles.text}>
-          <h1>{props.userProfile.name}</h1>
-          <h1>{props.userProfile.bio}</h1>
-          <h1>{props.userProfile.website}</h1>
+          <p className={styles.name}>{props.userProfile.name}</p>
+          <p className={styles.website}>{props.userProfile.website}</p>
+          <p className={styles.bio}>{props.userProfile.bio}</p>
         </div>
       </div>
     </div>
@@ -64,14 +71,16 @@ const RenderUserProfile = (props, context) => (
 
 const RenderUserImage = props => (
   <div className={styles.imagefolder}>
-    <img
-      src={props.image.file}
-      alt={props.image.id}
-      className={styles.image}
-    />
+    <img src={props.image.file} alt={props.image.id} className={styles.image} />
     <ul className={styles.imagecount}>
-      <li>{props.image.like_count}</li>
-      <li>{props.image.comment_count}</li>
+      <li>
+        <Ionicon icon="ios-heart" fontSize="28px" color="white" />{" "}
+        {props.image.like_count}
+      </li>
+      <li>
+        <Ionicon icon="ios-text" fontSize="28px" color="white" />{" "}
+        {props.image.comment_count}
+      </li>
     </ul>
   </div>
 );
