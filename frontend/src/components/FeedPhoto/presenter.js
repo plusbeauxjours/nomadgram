@@ -12,6 +12,7 @@ const FeedPhoto = (props, context) => {
     return <div className={styles.feedPhoto}>
         <Link 
             to={{ pathname: `/${props.creator.username}` }}
+            target='_self'
             style={{ textDecoration: 'none', color:'black' }}
         >
           <header className={styles.header}>

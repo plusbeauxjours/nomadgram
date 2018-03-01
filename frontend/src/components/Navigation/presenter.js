@@ -26,7 +26,7 @@ const Navigation = (props, context) => (
       </div>
       <div className={styles.column}>
         <div className={styles.navIcon}>
-          <Link to="/explore">
+          <Link to="/explore" target="_self">
             <Ionicon icon="ios-compass-outline" fontSize="28px" color="black" />
           </Link>
         </div>
@@ -45,7 +45,7 @@ const Navigation = (props, context) => (
           />
         )}
         <div className={styles.navIcon}>
-          <Link to={{ pathname: `/${props.username}` }}>
+          <Link to={{ pathname: `/${props.username}` }} target="_self">
             <Ionicon icon="ios-person-outline" fontSize="32px" color="black" />
           </Link>
         </div>

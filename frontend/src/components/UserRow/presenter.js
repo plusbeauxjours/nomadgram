@@ -7,6 +7,7 @@ const UserRow = (props, context) => (
   <div className={styles.container}>
     <Link
       to={{ pathname: `/${props.user.username}` }}
+      target='_self'
       style={{ textDecoration: 'none', color:'black' }}
     >
       <div className={styles.column}>

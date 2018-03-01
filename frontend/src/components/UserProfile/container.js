@@ -8,38 +8,18 @@ class Container extends Component {
     };
 
     static propTypes = {
-        getUserProfile: PropTypes.func.isRequired,
+        getUserProfile: PropTypes.func.isRequired
     };
 
     render() {
         const { userProfile } = this.props;
-        return (
-            <UserProfile 
-                {...this.props}
-                {...this.state} 
-                userProfile={userProfile} 
-                mouseOver={this._mouseOver}
-                mouseOut={this._mouseOut}
-            />
-        );
+        return <UserProfile {...this.state} userProfile={userProfile} />;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const { getUserProfile } = this.props;
-        if(!this.props.userProfile){
-            getUserProfile();
-        } else {
-            this.setState({ 
-                loading: false 
-            });
-        }
-    }
-
-    componentWillReceiveProps = nextProps => {
-        console.log(nextProps.userProfile)
-        console.log(this.props.userProfile);
-        const { getUserProfile } = this.props;
-        if(!this.props.userProfile == nextProps.userProfile) {
+        if (!this.props.userProfile) {
+            console.log(this.props);
             getUserProfile();
         } else {
             this.setState({
@@ -47,6 +27,32 @@ class Container extends Component {
             });
         }
     }
+
+    componentWillReceiveProps(nextProps) {
+        console.log("thisProps", this.props.match.url);
+        console.log("nextProps", nextProps.match.url);
+        if (nextProps.userProfile) {
+            this.setState({
+                loading: false
+            });
+        }
+    }
+
+//   shouldComponentUpdate(nextProps) {
+//       return nextProps === this.props
+//   }
+
+//   componentDidUpdate(prevProps) {
+//     const { getUserProfile } = this.props;
+//     console.log("prevprops", prevProps.match.url);
+//     if (this.props.username !== prevProps.username) {
+//       getUserProfile();
+//     } else {
+//       this.setState({
+//         loading: false
+//       });
+//     }
+//   }
 }
 
 export default Container;

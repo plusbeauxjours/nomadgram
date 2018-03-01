@@ -38,6 +38,7 @@ const ListNotification = (props, context) => (
   <div className={styles.list}>
     <Link
       to={{ pathname: `/${props.creator.username}` }}
+      target="_self"
       style={{ textDecoration: "none", color: "black" }}
     >
       <img
@@ -51,9 +52,10 @@ const ListNotification = (props, context) => (
         case "comment":
           return (
             <div className={styles.row}>
-              <Link 
+              <Link
                 to={{ pathname: `/${props.creator.username}` }}
-                style={{ textDecoration: 'none', color:'black' }}
+                target='_self'
+                style={{ textDecoration: "none", color: "black" }}
               >
                 <span className={styles.username}>
                   {props.creator.username}
@@ -69,9 +71,10 @@ const ListNotification = (props, context) => (
         case "like":
           return (
             <div className={styles.row}>
-              <Link 
+              <Link
                 to={{ pathname: `/${props.creator.username}` }}
-                style={{ textDecoration: 'none', color:'black' }}
+                target='_self'
+                style={{ textDecoration: "none", color: "black" }}
               >
                 <span className={styles.username}>
                   {props.creator.username}
@@ -86,9 +89,10 @@ const ListNotification = (props, context) => (
         case "follow":
           return (
             <div className={styles.row}>
-              <Link 
+              <Link
                 to={{ pathname: `/${props.creator.username}` }}
-                style={{ textDecoration: 'none', color:'black' }}
+                target='_self'                
+                style={{ textDecoration: "none", color: "black" }}
               >
                 <span className={styles.username}>
                   {props.creator.username}

@@ -22,6 +22,7 @@ const Comment = props => (
   <li className={styles.comment}>
     <Link
         to={{ pathname: `/${props.username}` }}
+        target='_self'
         style={{ textDecoration: "none", color: "black" }}
     >
         <span className={styles.username}>{props.username}</span>{" "}
