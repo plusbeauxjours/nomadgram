@@ -22,7 +22,6 @@ class Container extends Component {
     }
 
     componentWillReceiveProps = nextProps => {
-        console.log(nextProps)
         if(nextProps.feed) {
             this.setState({
                 loading: false

@@ -6,6 +6,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { user } = ownProps;
     return {
         handleClick: () => {
+            console.log("ROWhandleClick", ownProps);
             if(user.following) {
                 dispatch(userActions.unfollowUser(user.id));
             } else {

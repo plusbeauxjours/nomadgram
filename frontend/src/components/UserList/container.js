@@ -8,7 +8,9 @@ class Container extends Component {
     componentDidMount() {
         const { userList } = this.props;
         if (userList) {
-            this.setState({ loading: false });
+            this.setState({ 
+                loading: false 
+            });
         }
     }
     componentWillReceiveProps(nextProps) {

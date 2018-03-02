@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import Notification from './presenter';
+import NotificationList from './presenter';
 
 class Container extends Component {
     state = {
         loading: true
     };
     componentDidMount() {
-        const { notification } = this.props;
-        if (notification) {
+        const { notificationList } = this.props;
+        console.log('compoDID props:', notificationList)
+        if (notificationList) {
             this.setState({ 
                 loading: false 
             });
         }
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.notification) {
+        if (nextProps.notificationList) {
             this.setState({
                 loading: false
             });
         }
     }
     render() {
-        return <Notification {...this.props} {...this.state} />;
+        return <NotificationList {...this.props} {...this.state} />;
     }
 }
 

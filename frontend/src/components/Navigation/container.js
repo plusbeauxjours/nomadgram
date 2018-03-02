@@ -3,7 +3,8 @@ import Navigation from './presenter';
 
 class Container extends Component {
     state = {
-        seeingNotifications: false
+        seeingNotifications: false,
+        loading: true
     }
     render() {
         return (

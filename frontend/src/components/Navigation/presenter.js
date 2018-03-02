@@ -3,7 +3,7 @@ import Ionicon from 'react-ionicons';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './styles.scss';
-import Notification from 'components/Notification';
+import NotificationList from 'components/NotificationList';
 
 const Navigation = (props, context) => (
   <div className={styles.navigation}>
@@ -39,9 +39,9 @@ const Navigation = (props, context) => (
           />
         </div>
         {props.seeingNotifications && (
-          <Notification
+          <NotificationList
             closeNotifications={props.closeNotifications}
-            notification={props.notification}
+            notificationList={props.notificationList}
           />
         )}
         <div className={styles.navIcon}>
