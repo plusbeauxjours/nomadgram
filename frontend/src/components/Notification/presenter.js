@@ -124,7 +124,7 @@ const ListNotification = (props, context) => (
         case "follow":
           return (
             <button className={styles.button} onClick={props.handleClick}>
-              {props.following ? context.t("Unfollow") : context.t("Follow")}
+              {props.creator.following ? context.t("Unfollow") : context.t("Follow")}
             </button>
           );
         default:

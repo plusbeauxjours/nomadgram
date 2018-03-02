@@ -4,10 +4,8 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
     const { notifications: { notification } } = state;
-    const { user: { userList } } = state;
     return {
         notification,
-        userList
     }
 }
 
