@@ -23,15 +23,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         getUserFollowing: () => {
             console.log('indexFollowing')
             dispatch(userActions.getUserFollowing(username));
-        },
-        handleClick: () => {
-            console.log("indexProps:", ownProps);
-            console.log("indexHandleClick");
-            if(ownProps.is_following) {
-                dispatch(userActions.unfollowUser(username));
-            } else {
-                dispatch(userActions.followUser(username));
-            }
         }
     };
 };
