@@ -7,7 +7,6 @@ class Container extends Component {
     };
     componentDidMount() {
         const { notificationList } = this.props;
-        console.log('compoDID props:', notificationList)
         if (notificationList) {
             this.setState({ 
                 loading: false 

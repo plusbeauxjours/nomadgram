@@ -27,12 +27,12 @@ const FeedPhoto = (props, context) => {
         </Link>
         <img src={props.file} alt={props.caption} className={styles.image} />
         <div>
-          <PhotoActions number={props.like_count} isLiked={props.is_liked} photoId={props.id} openLikes={props.openLikes} />
+          <PhotoActions number={props.like_count} isLiked={props.is_liked} photoId={props.id} openUsers={props.openUsers} />
           <PhotoComments caption={props.caption} creator={props.creator.username} comments={props.comments} />
           <TimeStamp time={props.natural_time} />
           <CommentBox photoId={props.id} />
         </div>
-        {props.seeingLikes && <UserList title={context.t("Likes")} closeLikes={props.closeLikes} userList={props.likes} />}
+        {props.seeingLikes && <UserList title={context.t("Likes")} closeUsers={props.closeUsers} userList={props.likes} />}
       </div>;
 };
 
@@ -63,8 +63,8 @@ FeedPhoto.propTypes = {
     natural_time: PropTypes.string.isRequired,
     is_liked: PropTypes.bool.isRequired,
     seeingLikes: PropTypes.bool.isRequired,
-    openLikes: PropTypes.func.isRequired,
-    closeLikes: PropTypes.func.isRequired
+    openUsers: PropTypes.func.isRequired,
+    closeUsers: PropTypes.func.isRequired
 };
 
 export default FeedPhoto; 

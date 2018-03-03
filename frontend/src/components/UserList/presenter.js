@@ -10,7 +10,7 @@ const UserList = props => (
         <div className={styles.box}>
             <header className={styles.header}>
                 <h4 className={styles.title}>{props.title}</h4>
-                <span className={styles.icon} onClick={props.closeLikes}>
+                <span className={styles.icon} onClick={props.closeUsers}>
                     <Ionicon icon='md-close' fontSize='20px' color='black' />
                 </span>
             </header>
@@ -37,7 +37,7 @@ UserList.propTypes = {
     title: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
     userList: PropTypes.array,
-    closeLikes: PropTypes.func.isRequired
+    closeUsers: PropTypes.func.isRequired
 }
 
 export default UserList;

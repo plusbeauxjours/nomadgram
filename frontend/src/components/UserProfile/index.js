@@ -4,8 +4,10 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
     const { user: { userProfile } } = state
+    const { user: { userList } } = state;
     return {
-        userProfile
+        userProfile,
+        userList
     };
 };
 
@@ -14,6 +16,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getUserProfile: () => {
             dispatch(userActions.getUserProfile(username));
+        },
+        getUserFollowers: () => {
+            console.log("indexFollowers");
+            dispatch(userActions.getUserFollowers(username));
+        },
+        getUserFollowing: () => {
+            console.log('indexFollowing')
+            dispatch(userActions.getUserFollowing(username));
         }
     };
 };

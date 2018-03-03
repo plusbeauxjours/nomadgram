@@ -6,7 +6,6 @@ import TimeStamp from 'components/TimeStamp';
 
 const NotificationRow = (props, context) => (
   <div className={styles.list}>
-    {console.log("thisprops:", props.creator)}
     <Link
       to={{ pathname: `/${props.creator.username}` }}
       target="_self"
@@ -95,7 +94,6 @@ const NotificationRow = (props, context) => (
         case "follow":
           return (
             <button className={styles.button} onClick={props.handleClick}>
-              {console.log("in button: ", props.creator)}
               {props.creator.following
                 ? context.t("Unfollow")
                 : context.t("Follow")}

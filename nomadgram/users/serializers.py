@@ -16,8 +16,9 @@ class UsernameSerializer(serializers.ModelSerializer):
         model = models.User
         fields = (
             'id',
-            'username',
             'profile_image',
+            'username',
+            'name',
             'bio',
             'following'
         )
@@ -37,7 +38,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
     is_self = serializers.SerializerMethodField()
-    following = serializers.SerializerMethodField()
+    is_following = serializers.SerializerMethodField()
 
     class Meta:
         model = models.User
@@ -52,7 +53,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'following_count',
             'images',
             'is_self',
-            'following'
+            'is_following'
         )
 
     def get_is_self(self, user):
@@ -65,7 +66,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             
         return False
     
-    def get_following(self, obj):
+    def get_is_following(self, obj):
         if 'request' in self.context:
             request = self.context['request']
             if obj in request.user.following.all():

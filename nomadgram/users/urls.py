@@ -25,12 +25,12 @@ urlpatterns = [
         name='unfollow_user',
     ),
     url(
-        regex=r'^(?P<user_id>[0-9]+)/followers/$',
+        regex=r'^(?P<username>\w+)/followers/$',
         view=views.UserFollowers.as_view(),
         name='user_follwers',
     ),
     url(
-        regex=r'^(?P<user_id>[0-9]+)/following/$',
+        regex=r'^(?P<username>\w+)/following/$',
         view=views.UserFollowing.as_view(),
         name='user_follwing',
     ),

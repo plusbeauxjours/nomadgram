@@ -6,7 +6,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { creator } = ownProps;
     return {
         handleClick: () => {
-            console.log("NOTIhandleClick props:", creator);
             if (creator.following) {
               dispatch(notificationActions.notiUnfollowUser(creator.id));
             } else {

@@ -43,6 +43,13 @@
                     font-weight: 600;
                 }
             }
+            .open {
+                cursor: pointer;
+                margin-right: 50px;
+                .number {
+                    font-weight: 600;
+                }
+            }
         }
         .text {
             padding-top: 20px;

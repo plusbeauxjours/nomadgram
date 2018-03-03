@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import Loading from "components/Loading";
 import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
-
-
+import UserList from "components/UserList";
 
 const UserProfile = props => {
   if(props.loading){
@@ -32,7 +31,7 @@ const RenderUserProfile = (props, context) => (
         <div className={styles.username}>
           {props.userProfile.username}
           {props.userProfile.is_self}
-          {props.userProfile.following}
+          {props.userProfile.is_following}
         </div>
         <ul className={styles.countingfolder}>
           <li className={styles.counting}>
@@ -41,13 +40,13 @@ const RenderUserProfile = (props, context) => (
             </span>
             <span>{context.t("posts")}</span>
           </li>
-          <li className={styles.counting}>
+          <li className={styles.open} onClick={props.openUserFollowers}>
             <span className={styles.number}>
               {props.userProfile.followers_count}{" "}
             </span>
             <span>{context.t("followers")}</span>
           </li>
-          <li className={styles.counting}>
+          <li className={styles.open} onClick={props.openUserFollowing}>
             <span className={styles.number}>
               {props.userProfile.following_count}{" "}
             </span>
@@ -66,6 +65,13 @@ const RenderUserProfile = (props, context) => (
         <RenderUserImage image={image} key={image.id} />
       ))}
     </div>
+    {props.seeingUsers && (
+      <UserList
+        title={context.t("Users")}
+        closeUsers={props.closeUsers}
+        userList={props.userList}
+      />
+    )}
   </div>
 );
 

@@ -225,6 +225,50 @@ function getUserProfile(username) {
     };
 }
 
+function getUserFollowers(username) {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+        fetch(`/users/${username}/followers/`, {
+            method: "GET",
+            headers: {
+                Authorization: `JWT ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => {
+            if (response.status === 401) {
+                dispatch(logout());
+            }
+            return response.json();
+        })
+        .then (console.log('redux'))
+        .then(json => {
+            console.log(json);
+            dispatch(setUserList(json));
+        });
+    }
+}
+
+function getUserFollowing(username) {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+        fetch(`/users/${username}/following/`, {
+          method: "GET",
+          headers: {
+            Authorization: `JWT ${token}`,
+            "Content-Type": "application/json"
+          }
+        })
+          .then(response => {
+            if (response.status === 401) {
+              dispatch(logout());
+            }
+            return response.json();
+          })
+          .then(json => dispatch(setUserList(json)));
+    };
+}
+
 // initial state
 
 const initialState = {
@@ -312,13 +356,13 @@ function applySetUserProfile(state, action) {
     const { userProfile } = action;
     return {
         ...state, 
-        userProfile        
+        userProfile
     }
 }
 
 // exports
 
-const actionCreators ={
+const actionCreators = {
     facebookLogin,
     usernameLogin,
     createAccount,
@@ -327,7 +371,9 @@ const actionCreators ={
     followUser,
     unfollowUser,
     getExplore,
-    getUserProfile
+    getUserProfile,
+    getUserFollowers,
+    getUserFollowing
 }
 
 export { actionCreators };

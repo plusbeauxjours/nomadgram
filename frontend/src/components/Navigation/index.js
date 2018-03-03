@@ -14,7 +14,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getNotification: () => {
-      console.log('haha', ownProps)
       dispatch(notificationActions.getNotification());
     }
   };

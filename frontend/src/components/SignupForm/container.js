@@ -32,7 +32,6 @@ class Container extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state);
   };
   _handleSubmit = event => {
     const { username, password, email, name } = this.state;

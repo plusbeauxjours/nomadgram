@@ -17,7 +17,7 @@ const PhotoActions = (props, context) => (
         <Ionicon icon="ios-text-outline" fontSize="28px" color="black" />
       </span>
     </div>
-    <span className={styles.likes} onClick={props.openLikes}>
+    <span className={styles.likes} onClick={props.openUsers}>
       {props.number}{" "}
       {props.number === 1 ? context.t("like") : context.t("likes")}
     </span>
@@ -29,7 +29,7 @@ PhotoActions.propTypes = {
     isLiked: PropTypes.bool.isRequired,
     photoId: PropTypes.number.isRequired,
     handleHeartClick: PropTypes.func.isRequired,
-    openLikes: PropTypes.func.isRequired
+    openUsers: PropTypes.func.isRequired
 };
     
 PhotoActions.contextTypes = {

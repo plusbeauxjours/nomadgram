@@ -10,19 +10,19 @@ class Container extends Component {
             <FeedPhoto
                 {...this.props}
                 {...this.state}
-                openLikes={this._openLikes}
-                closeLikes={this._closeLikes}
+                openUsers={this._openUsers}
+                closeUsers={this._closeUsers}
             />
         );
     }
-    _openLikes = () => {
+    _openUsers = () => {
         const { getPhotoLikes } = this.props;
         this.setState({
             seeingLikes: true
         });
         getPhotoLikes();
     };
-    _closeLikes = () => {
+    _closeUsers = () => {
         this.setState({
             seeingLikes: false
         });
