@@ -6,10 +6,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { user } = ownProps;
     return {
         handleClick: () => {
-            if(user.following) {
-                dispatch(userActions.unfollowUser(user.id));
+            if(user.is_following) {
+                dispatch(userActions.unfollowUser(user.username));
             } else {
-                dispatch(userActions.followUser(user.id));
+                dispatch(userActions.followUser(user.username));
             }
         }
     };

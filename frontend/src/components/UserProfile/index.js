@@ -4,10 +4,8 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
     const { user: { userProfile } } = state
-    const { user: { userList } } = state;
     return {
-        userProfile,
-        userList
+        userProfile
     };
 };
 
@@ -19,11 +17,21 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         getUserFollowers: () => {
             console.log("indexFollowers");
+            console.log("indexProps:", ownProps);
             dispatch(userActions.getUserFollowers(username));
         },
         getUserFollowing: () => {
             console.log('indexFollowing')
             dispatch(userActions.getUserFollowing(username));
+        },
+        handleClick: () => {
+            console.log("indexProps:", ownProps);
+            console.log("indexHandleClick");
+            if(ownProps.is_following) {
+                dispatch(userActions.unfollowUser(username));
+            } else {
+                dispatch(userActions.followUser(username));
+            }
         }
     };
 };

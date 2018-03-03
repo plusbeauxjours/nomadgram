@@ -24,7 +24,7 @@ const UserRow = (props, context) => (
     </Link>
     <span className={styles.column}>
       <button className={styles.button} onClick={props.handleClick}>
-        {props.user.following ? context.t("Unfollow") : context.t("Follow")}
+        {props.user.is_following ? context.t("Unfollow") : context.t("Follow")}
       </button>
     </span>
   </div>
@@ -40,7 +40,7 @@ UserRow.propTypes = {
     profile_image: PropTypes.string,
     username: PropTypes.string.isRequired,
     name: PropTypes.string,
-    following: PropTypes.bool.isRequired
+    is_following: PropTypes.bool.isRequired
   }).isRequired,
   big: PropTypes.bool,
   handleClick: PropTypes.func.isRequired

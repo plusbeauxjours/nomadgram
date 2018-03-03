@@ -94,7 +94,7 @@ const NotificationRow = (props, context) => (
         case "follow":
           return (
             <button className={styles.button} onClick={props.handleClick}>
-              {props.creator.following
+              {props.creator.is_following
                 ? context.t("Unfollow")
                 : context.t("Follow")}
             </button>

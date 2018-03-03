@@ -18,7 +18,6 @@ class Container extends Component {
             <UserProfile 
                 {...this.state} 
                 {...this.props} 
-                openUsers={this._openUsers}
                 openUserFollowers={this._openUserFollowers}
                 openUserFollowing={this._openUserFollowing}
                 closeUsers={this._closeUsers}
@@ -28,7 +27,7 @@ class Container extends Component {
 
     _openUserFollowers = () => {
         const { getUserFollowers } = this.props;
-        console.log("containerFollowers");            
+        console.log("containerProps", this.props);            
         this.setState({
             seeingUsers: true
         });
@@ -37,7 +36,7 @@ class Container extends Component {
 
     _openUserFollowing = () => {
         const { getUserFollowing } = this.props;
-        console.log('containerFollowing')            
+        console.log("containerProps", this.props);            
         this.setState({
             seeingUsers: true
         });

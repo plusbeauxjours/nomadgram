@@ -32,17 +32,17 @@ function setUserList(userList) {
   };
 }
 
-function setFollowUser(userId) {
+function setFollowUser(username) {
     return {
         type: FOLLOW_USER,
-        userId
+        username
     }
 }
 
-function setUnfollowUser(userId) {
+function setUnfollowUser(username) {
     return {
         type: UNFOLLOW_USER,
-        userId
+        username
     }
 }
 
@@ -138,17 +138,16 @@ function getPhotoLikes(photoId) {
             return response.json();
         })
         .then(json => {
-            console.log(json);
             dispatch(setUserList(json));
         });
     };
 }
 
-function followUser(userId) {
+function followUser(username) {
     return (dispatch, getState) => {
-        dispatch(setFollowUser(userId));
+        dispatch(setFollowUser(username));
         const { user: { token } } = getState();
-        fetch(`/users/${userId}/follow/`, {
+        fetch(`/users/${username}/follow/`, {
             method: 'POST',
             headers: {
                 Authorization: `JWT ${token}`,
@@ -159,17 +158,17 @@ function followUser(userId) {
             if (response.status === 401) {
                 dispatch(logout());
             } else if (!response.ok) {
-                dispatch(setUnfollowUser(userId));
+                dispatch(setUnfollowUser(username));
             }
         });
     };
 }
 
-function unfollowUser(userId) {
+function unfollowUser(username) {
     return (dispatch, getState) => {
-        dispatch(setUnfollowUser(userId));
+        dispatch(setUnfollowUser(username));
         const { user: { token } } = getState();
-        fetch(`/users/${userId}/unfollow/`, {
+        fetch(`/users/${username}/unfollow/`, {
             method: 'POST',
             headers: {
                 Authorization: `JWT ${token}`,
@@ -180,7 +179,7 @@ function unfollowUser(userId) {
             if(response.status === 401) {
                 dispatch(logout());
             } else if (!response.ok) {
-                dispatch(setFollowUser(userId));
+                dispatch(setFollowUser(username));
             }
         });
     };
@@ -241,9 +240,8 @@ function getUserFollowers(username) {
             }
             return response.json();
         })
-        .then (console.log('redux'))
+        .then (console.log('reduxFollowers'))
         .then(json => {
-            console.log(json);
             dispatch(setUserList(json));
         });
     }
@@ -259,13 +257,16 @@ function getUserFollowing(username) {
             "Content-Type": "application/json"
           }
         })
-          .then(response => {
+        .then(response => {
             if (response.status === 401) {
-              dispatch(logout());
+                dispatch(logout());
             }
             return response.json();
-          })
-          .then(json => dispatch(setUserList(json)));
+        })
+        .then (console.log('reduxFollowing'))
+        .then(json => {
+            dispatch(setUserList(json))
+        });
     };
 }
 
@@ -329,11 +330,11 @@ function applySetUserList(state, action) {
 }
 
 function applyFollowUser(state, action) {
-    const { userId } = action;
+    const { username } = action;
     const { userList } = state;
     const updatedUserList = userList.map(user => {
-        if(user.id === userId){
-            return { ...user, following: true };
+        if(user.username === username){
+            return { ...user, is_following: true };
         }
         return user;
     });
@@ -341,11 +342,11 @@ function applyFollowUser(state, action) {
 }
 
 function applyUnfollowUser(state, action) {
-    const { userId } = action;
+    const { username } = action;
     const { userList } = state;
     const updatedUserList = userList.map(user => {
-        if (user.id === userId) {
-            return { ...user, following: false };
+        if (user.username === username) {
+            return { ...user, is_following: false };
         }
         return user;
     });

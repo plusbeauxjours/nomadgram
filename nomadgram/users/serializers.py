@@ -6,31 +6,6 @@ from . import models
 from nomadgram.images import serializers as images_serializers
 
 
-class UsernameSerializer(serializers.ModelSerializer):
-
-    """ Used for the notifications """
-
-    following = serializers.SerializerMethodField()
-    
-    class Meta:
-        model = models.User
-        fields = (
-            'id',
-            'profile_image',
-            'username',
-            'name',
-            'bio',
-            'following'
-        )
-
-    def get_following(self, obj):
-        if 'request' in self.context:
-            request = self.context['request']
-            if obj in request.user.following.all():
-                return True
-        return False
-        
-
 class UserProfileSerializer(serializers.ModelSerializer):
 
     images = images_serializers.CountImageSerializer(many=True, read_only=True)
@@ -43,6 +18,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = (
+            'id',
             'profile_image',
             'username',
             'name',
@@ -76,7 +52,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class ListUserSerializer(serializers.ModelSerializer):
 
-    following = serializers.SerializerMethodField()
+    is_following = serializers.SerializerMethodField()
 
     class Meta:
         model = models.User
@@ -86,14 +62,10 @@ class ListUserSerializer(serializers.ModelSerializer):
             'username',
             'name',
             'bio',
-            'website',
-            'post_count',
-            'followers_count',
-            'following_count',
-            'following'
+            'is_following'
         )
 
-    def get_following(self, obj):
+    def get_is_following(self, obj):
         if 'request' in self.context:
             request = self.context['request']
             if obj in request.user.following.all():

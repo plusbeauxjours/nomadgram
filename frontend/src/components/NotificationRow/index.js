@@ -6,10 +6,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { creator } = ownProps;
     return {
         handleClick: () => {
-            if (creator.following) {
-              dispatch(notificationActions.notiUnfollowUser(creator.id));
+            if (creator.is_following) {
+              dispatch(notificationActions.notiUnfollowUser(creator.username));
             } else {
-              dispatch(notificationActions.notiFollowUser(creator.id));
+              dispatch(notificationActions.notiFollowUser(creator.username));
             }
         }
     };

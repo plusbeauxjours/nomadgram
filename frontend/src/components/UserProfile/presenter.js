@@ -30,6 +30,12 @@ const RenderUserProfile = (props, context) => (
       <div className={styles.card}>
         <div className={styles.username}>
           {props.userProfile.username}
+          <button className={styles.button} onClick={props.handleClick}>
+            {props.userProfile.is_following
+              ? context.t("Unfollow")
+              : context.t("Follow")}
+          </button>
+          {console.log('presenterButton: ', props)}
           {props.userProfile.is_self}
           {props.userProfile.is_following}
         </div>

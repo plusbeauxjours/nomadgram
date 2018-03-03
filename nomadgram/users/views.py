@@ -30,14 +30,14 @@ class ExploreUsers(APIView):
 
 class FollowUser(APIView):
 
-    def post(self, request, user_id, format=None):
+    def post(self, request, username, format=None):
 
         user = request.user
 
         # follow notification
 
         try:
-            user_to_follow = models.User.objects.get(id=user_id)
+            user_to_follow = models.User.objects.get(username=username)
         except models.User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -52,14 +52,14 @@ class FollowUser(APIView):
 
 class UnFollowUser(APIView):
 
-    def post(self, request, user_id, format=None):
+    def post(self, request, username, format=None):
 
         user = request.user
 
         # unfloow notification
 
         try:
-            user_to_follow = models.User.objects.get(id=user_id)
+            user_to_follow = models.User.objects.get(username=username)
         except models.User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
