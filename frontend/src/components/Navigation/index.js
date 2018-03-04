@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Container from './container';
 import { actionCreators as notificationActions } from "redux/modules/notifications";
+import { push } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => {
     const { user : { username } } = state;
@@ -15,6 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getNotification: () => {
       dispatch(notificationActions.getNotification());
+    },
+    goToSearch: (searchTerm) => {
+      dispatch(push(`/search/${searchTerm}`));
     }
   };
 };

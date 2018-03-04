@@ -240,7 +240,6 @@ function getUserFollowers(username) {
             }
             return response.json();
         })
-        .then (console.log('reduxFollowers'))
         .then(json => {
             dispatch(setUserList(json));
         });
@@ -263,7 +262,6 @@ function getUserFollowing(username) {
             }
             return response.json();
         })
-        .then (console.log('reduxFollowing'))
         .then(json => {
             dispatch(setUserList(json))
         });

@@ -13,15 +13,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { match: { params: { username } } } = ownProps;
     return {
         getUserProfile: () => {
+            console.log("index ownProps:", ownProps);
             dispatch(userActions.getUserProfile(username));
         },
         getUserFollowers: () => {
-            console.log("indexFollowers");
-            console.log("indexProps:", ownProps);
+            console.log("index ownProps:", ownProps);
             dispatch(userActions.getUserFollowers(username));
         },
         getUserFollowing: () => {
-            console.log('indexFollowing')
+            console.log("index ownProps:", ownProps);
             dispatch(userActions.getUserFollowing(username));
         }
     };
