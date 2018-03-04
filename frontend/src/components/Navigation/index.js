@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getNotification: () => {
       dispatch(notificationActions.getNotification());
     },
-    goToSearch: (searchTerm) => {
+    goToSearch: searchTerm => {
+      console.log('sign from goToSearch on navigations')
       dispatch(push(`/search/${searchTerm}`));
     }
   };

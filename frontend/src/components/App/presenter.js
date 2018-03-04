@@ -5,6 +5,7 @@ import "./styles.scss";
 import Footer from "components/Footer";
 import Auth from 'components/Auth';
 import Navigation from 'components/Navigation';
+import Search from "components/Search";
 import Feed from 'components/Feed';
 import Explore from 'components/Explore';
 import UserProfile from 'components/UserProfile';
@@ -23,7 +24,7 @@ const PrivateRoutes = props => (
   <Switch>
     <Route exact path="/" component={Feed} />
     <Route path="/explore" component={Explore} />
-    <Route path="/search/:searchTerm" component={() => "serarch"} />
+    <Route path="/search/:searchTerm" component={Search} />
     <Route path="/:username/" component={UserProfile} />
   </Switch>
 );

@@ -11,6 +11,7 @@ class Container extends Component {
         goToSearch: PropTypes.func.isRequired
     }
     render() {
+        const { term } = this.state;
         return (
             <Navigation 
                 {...this.props}
@@ -19,7 +20,7 @@ class Container extends Component {
                 closeNotifications={this._closeNotifications}
                 onInputChange={this._onInputChange}
                 onSubmit={this._onSubmit}
-                value={this.state.term}
+                value={term}
             />
         );
     }
@@ -32,12 +33,13 @@ class Container extends Component {
     _onSubmit = event => {
         const { goToSearch } = this.props;
         const { term } = this.state;
-        event.preventDefault()
+        event.preventDefault();
         goToSearch(term);
+        console.log(term)
         this.setState({
             term: ''
-        })
-    }
+        });
+    };
     _openNotifications = () => {
         const { getNotification } = this.props;
         this.setState({

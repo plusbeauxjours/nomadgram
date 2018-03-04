@@ -35,7 +35,7 @@ urlpatterns = [
         name='user_follwing',
     ),
     url(
-        regex='search/',
+        regex=r'^search/$',
         view=views.Search.as_view(),
         name='search',
     ),

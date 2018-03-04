@@ -24,7 +24,7 @@ const Navigation = (props, context) => (
             placeholder={context.t("Search")}
             className={styles.searchInput}
             value={props.value}
-            onInput={props.onInputChange}
+            onChange={props.onInputChange}
           />
         </form>
       </div>
@@ -65,7 +65,7 @@ Navigation.contextTypes = {
 Navigation.PropsTypes = {
   openNotifications: PropTypes.func.isRequired,
   closeNotifications: PropTypes.func.isRequired,
-  onInputChange: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired
 };
