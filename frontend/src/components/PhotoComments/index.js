@@ -4,30 +4,35 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 const PhotoComments = props => (
-    <div className={styles.comments}>
-        <ul className={styles.list}>
-            <Comment username={props.creator} comment={props.caption} />
-            {props.comments.map(comment => (
-                <Comment 
-                    username={comment.creator.username} 
-                    comment={comment.message} 
-                    key={comment.id} 
-                />
-            ))}
-        </ul>
-    </div>    
+  <div className={styles.comments}>
+    <ul className={styles.list}>
+      <Comment
+        username={props.creator}
+        comment={props.caption}
+        tags={props.tags}
+      />
+      {props.comments.map(comment => (
+        <Comment
+          username={comment.creator.username}
+          comment={comment.message}
+          key={comment.id}
+        />
+      ))}
+    </ul>
+  </div>
 );
 
 const Comment = props => (
   <li className={styles.comment}>
     <Link
-        to={{ pathname: `/${props.username}` }}
-        target='_self'
-        style={{ textDecoration: "none", color: "black" }}
+      to={{ pathname: `/${props.username}` }}
+      target="_self"
+      style={{ textDecoration: "none", color: "black" }}
     >
-        <span className={styles.username}>{props.username}</span>{" "}
+      <span className={styles.username}>{props.username}</span>{" "}
     </Link>
-    <span className={styles.message}>{props.comment}</span>
+    <span className={styles.message}>{props.comment}</span>{" "}
+    <span className={styles.message}>{props.tags}</span>{" "}
   </li>
 );
 
