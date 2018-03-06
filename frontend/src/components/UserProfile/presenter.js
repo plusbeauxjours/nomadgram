@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Loading from "components/Loading";
-import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
 import UserList from "components/UserList";
+import PhotoDisplay from "components/PhotoDisplay";
+
 
 const UserProfile = props => {
   if(props.loading){
@@ -62,7 +63,7 @@ const RenderUserProfile = (props, context) => (
     </div>
     <div className={styles.images}>
       {props.userProfile.images.map(image => (
-        <RenderUserImage image={image} key={image.id} />
+        <PhotoDisplay photo={image} key={image.id} />
       ))}
     </div>
     {props.seeingUsers && (
@@ -72,22 +73,6 @@ const RenderUserProfile = (props, context) => (
         userList={props.userList}
       />
     )}
-  </div>
-);
-
-const RenderUserImage = props => (
-  <div className={styles.imagefolder}>
-    <img src={props.image.file} alt={props.image.id} className={styles.image} />
-    <ul className={styles.imagecount}>
-      <li>
-        <Ionicon icon="ios-heart" fontSize="28px" color="white" />{" "}
-        {props.image.like_count}
-      </li>
-      <li>
-        <Ionicon icon="ios-text" fontSize="28px" color="white" />{" "}
-        {props.image.comment_count}
-      </li>
-    </ul>
   </div>
 );
 

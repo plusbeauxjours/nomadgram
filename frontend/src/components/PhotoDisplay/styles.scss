@@ -1,0 +1,45 @@
+.container {
+    position: relative;
+    &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+    }
+    .image {
+        // display: block;
+        width: 300px;
+        max-width: 100%;
+        height: 300px;
+        object-fit: cover;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    &:hover .overlay {
+        opacity: 1;
+    }
+    .overlay {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        .data {
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            &:first-child {
+                margin-right: 10px;
+            }
+            svg {
+                margin-right: 5px;
+            }
+        }
+    }
+}

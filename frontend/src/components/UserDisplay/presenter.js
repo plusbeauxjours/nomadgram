@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./styles.scss";
 
-const UserRow = (props, context) => (
-  <div className={styles.container}>
+const UserDisplay = (props, context) => (
+  <div className={props.horizontal ? styles.horizontal : styles.vertical}>
     <Link
       to={{ pathname: `/${props.user.username}` }}
       target='_self'
@@ -30,11 +30,11 @@ const UserRow = (props, context) => (
   </div>
 );
 
-UserRow.contextTypes = {
+UserDisplay.contextTypes = {
   t: PropTypes.func.isRequired
 };
 
-UserRow.propTypes = {
+UserDisplay.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,
     profile_image: PropTypes.string,
@@ -43,11 +43,13 @@ UserRow.propTypes = {
     is_following: PropTypes.bool.isRequired
   }).isRequired,
   big: PropTypes.bool,
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
+  horizontal: PropTypes.bool,
+  vertical: PropTypes.bool
 };
 
-UserRow.defaultProps = {
+UserDisplay.defaultProps = {
     big: false
 };
 
-export default UserRow;
+export default UserDisplay;

@@ -80,40 +80,4 @@
     margin: 0 auto;
     align-items: center;
     padding: 60px 0 0;
-    .imagefolder {
-        position: relative;
-        &:after {
-        content: "";
-        display: block;
-        padding-bottom: 100%;
-        }
-        .image {
-            // display: block;
-            width: 300px;
-            max-width: 100%;
-            height: 300px;
-            object-fit: cover;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-        }
-        .imagecount {
-            position: absolute;
-            top: 45%;
-            left: 45%;
-            visibility: hidden;
-            text-align: center;
-            font-size: 20px;
-            font-weight: 600;
-            color: white;
-        }
-        &:hover {
-            .image {
-                opacity: 0.7;
-            }
-            .imagecount {
-                visibility: visible;
-            }
-        }
-    }
 }

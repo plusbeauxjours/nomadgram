@@ -9,7 +9,6 @@ const PhotoComments = props => (
       <Comment
         username={props.creator}
         comment={props.caption}
-        tags={props.tags}
       />
       {props.comments.map(comment => (
         <Comment
@@ -32,7 +31,6 @@ const Comment = props => (
       <span className={styles.username}>{props.username}</span>{" "}
     </Link>
     <span className={styles.message}>{props.comment}</span>{" "}
-    <span className={styles.message}>{props.tags}</span>{" "}
   </li>
 );
 
