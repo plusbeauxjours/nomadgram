@@ -5,6 +5,8 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+from django.db.models.signals import post_delete 
+from django.dispatch import receiver
 
 @python_2_unicode_compatible
 class User(AbstractUser):
@@ -45,3 +47,8 @@ class User(AbstractUser):
     @property
     def following_count(self):
         return self.following.all().count()
+
+@receiver(post_delete, sender=User)
+def delete_attached_profile_image(sender, **kwargs): 
+    instance = kwargs.pop('instance')  
+    instance.profile_image.delete(save=False)

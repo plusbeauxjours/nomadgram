@@ -4,6 +4,8 @@ from taggit.managers import TaggableManager
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+from django.db.models.signals import post_delete 
+from django.dispatch import receiver
 
 class TimeStampedModel(models.Model):
 
@@ -42,6 +44,11 @@ class Image(TimeStampedModel):
 
     class Meta:
         ordering = ['-created_at']
+
+@receiver(post_delete, sender=Image)
+def delete_attached_image(sender, **kwargs): 
+    instance = kwargs.pop('instance')  
+    instance.file.delete(save=False)
 
 class Comment(TimeStampedModel):
 
