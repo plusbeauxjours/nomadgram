@@ -54,7 +54,8 @@ THIRD_PARTY_APPS = [
     'taggit_serializer',  # tag serializer
     'rest_auth',  # rest auth
     'rest_auth.registration',  # enable registration
-    'corsheaders',  # To accept requests from React
+    'corsheaders',
+    'imagekit',  # To accept requests from React
 ]
 
 # Apps specific for this project go here.

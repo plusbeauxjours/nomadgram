@@ -95,7 +95,7 @@ const NotificationRow = (
           return (
             <div>
               <img
-                src={image.file}
+                src={image.file || require("images/photoPlaceholder.png")}
                 alt={image.caption}
                 className={styles.image}
               />

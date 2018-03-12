@@ -2,7 +2,8 @@ from django.db import models
 from nomadgram.users import models as user_models
 from taggit.managers import TaggableManager
 from django.contrib.humanize.templatetags.humanize import naturaltime
-
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 class TimeStampedModel(models.Model):
 
@@ -14,7 +15,11 @@ class TimeStampedModel(models.Model):
 
 class Image(TimeStampedModel):
 
-    file = models.ImageField()
+    file = ProcessedImageField(
+        processors = [ResizeToFill(600, 400)],
+        format = 'JPEG',
+        options = {'quality':100}
+    )
     location = models.CharField(max_length=140)
     caption = models.TextField()
     creator = models.ForeignKey(user_models.User, on_delete=models.SET_NULL, null=True, related_name='images') 

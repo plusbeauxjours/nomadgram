@@ -3,7 +3,8 @@ from django.urls import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
-
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 @python_2_unicode_compatible
 class User(AbstractUser):
@@ -16,7 +17,11 @@ class User(AbstractUser):
 
     # First Name and Last Name do not cover name patterns
     # around the globe.
-    profile_image = models.ImageField(null=True, blank=True)
+    profile_image = ProcessedImageField(
+        processors = [ResizeToFill(200, 200)],
+        format = 'JPEG',
+        options = {'quality':100}
+    )
     name = models.CharField(_('Name of User'), blank=True, max_length=255)
     website = models.URLField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
