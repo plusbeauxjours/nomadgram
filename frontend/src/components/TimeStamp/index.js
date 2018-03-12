@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-const TimeStamp = (props, context) => (
-    <span className={styles.time}>{props.time}</span>
+const TimeStamp = (
+    {
+        time
+    }, 
+    context
+) => (
+    <span className={styles.time}>{time}</span>
 );
 
 TimeStamp.propTypes = {

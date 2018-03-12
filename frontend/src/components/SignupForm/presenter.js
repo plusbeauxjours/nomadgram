@@ -3,59 +3,70 @@ import PropTypes from "prop-types";
 import FacebookLogin from 'react-facebook-login';
 import formStyles from "shared/formStyles.scss";
 
-const SignupForm = (props, context) => (
+const SignupForm = (
+  {
+    handleFacebookLogin,
+    handleSubmit,
+    handleInputChange,
+    emailValue,
+    usernameValue,
+    nameValue,
+    passwordValue
+  },
+  context
+) => (
   <div className={formStyles.formComponent}>
     <h3 className={formStyles.signupHeader}>
       {context.t("Sign up to see photos and videos from your friends.")}
     </h3>
-      <FacebookLogin
+    <FacebookLogin
       appId="813108485540895"
       autoLoad={false}
       fields="name,email,picture"
-      callback={props.handleFacebookLogin}
+      callback={handleFacebookLogin}
       cssClass={formStyles.button}
-      icon='fa-facebook-official'
-      textButton={context.t('Log in with Facebook')}
+      icon="fa-facebook-official"
+      textButton={context.t("Log in with Facebook")}
     />
     <span className={formStyles.divider}>{context.t("or")}</span>
-    <form className={formStyles.form} onSubmit={props.handleSubmit}>
+    <form className={formStyles.form} onSubmit={handleSubmit}>
       <input
         type="email"
         placeholder={context.t("email")}
         className={formStyles.textInput}
         name="email"
-        onChange={props.handleInputChange}
-        value={props.emailValue}
+        onChange={handleInputChange}
+        value={emailValue}
       />
       <input
         type="text"
         placeholder={context.t("Full Name")}
         className={formStyles.textInput}
         name="name"
-        onChange={props.handleInputChange}
-        value={props.nameValue}
+        onChange={handleInputChange}
+        value={nameValue}
       />
       <input
         type="username"
         placeholder={context.t("Username")}
         className={formStyles.textInput}
         name="username"
-        onChange={props.handleInputChange}
-        value={props.usernameValue}
+        onChange={handleInputChange}
+        value={usernameValue}
       />
       <input
         type="password"
         placeholder={context.t("Password")}
         className={formStyles.textInput}
         name="password"
-        onChange={props.handleInputChange}
-        value={props.passwordValue}
+        onChange={handleInputChange}
+        value={passwordValue}
       />
       <input
         type="submit"
         placeholder={context.t("Sign up")}
         className={formStyles.button}
-        onChange={props.handleInputChange}
+        onChange={handleInputChange}
       />
     </form>
     <p className={formStyles.terms}>

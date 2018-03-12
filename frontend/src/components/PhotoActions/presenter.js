@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 import Ionicon from 'react-ionicons';
 import styles from './styles.scss';
 
-const PhotoActions = (props, context) => (
+const PhotoActions = (
+  {
+    handleHeartClick,
+    isLiked,
+    openUsers,
+    number
+  }, 
+  context
+) => (
   <div className={styles.actions}>
     <div className={styles.icons}>
-      <span className={styles.icon} onClick={props.handleHeartClick}>
-        {props.isLiked ? (
+      <span className={styles.icon} onClick={handleHeartClick}>
+        {isLiked ? (
           <Ionicon icon="ios-heart" fontSize="28px" color="#EB4B59" />
         ) : (
           <Ionicon icon="ios-heart-outline" fontSize="28px" color="black" />
@@ -17,9 +25,9 @@ const PhotoActions = (props, context) => (
         <Ionicon icon="ios-text-outline" fontSize="28px" color="black" />
       </span>
     </div>
-    <span className={styles.likes} onClick={props.openUsers}>
-      {props.number}{" "}
-      {props.number === 1 ? context.t("like") : context.t("likes")}
+    <span className={styles.likes} onClick={openUsers}>
+      {number}{" "}
+      {number === 1 ? context.t("like") : context.t("likes")}
     </span>
   </div>
 );

@@ -5,7 +5,19 @@ import { Link } from 'react-router-dom';
 import styles from './styles.scss';
 import NotificationList from 'components/NotificationList';
 
-const Navigation = (props, context) => (
+const Navigation = (
+  {
+    onSubmit,
+    value,
+    onInputChange,
+    seeingNotifications,
+    username,
+    openNotifications,
+    closeNotifications,
+    notificationList
+  },
+  context
+) => (
   <div className={styles.navigation}>
     <div className={styles.inner}>
       <div className={styles.column}>
@@ -18,13 +30,13 @@ const Navigation = (props, context) => (
         </Link>
       </div>
       <div className={styles.column}>
-        <form onSubmit={props.onSubmit}>
+        <form onSubmit={onSubmit}>
           <input
             type="text"
             placeholder={context.t("Search")}
             className={styles.searchInput}
-            value={props.value}
-            onChange={props.onInputChange}
+            value={value}
+            onChange={onInputChange}
           />
         </form>
       </div>
@@ -39,17 +51,17 @@ const Navigation = (props, context) => (
             icon="ios-heart-outline"
             fontSize="28px"
             color="black"
-            onClick={props.openNotifications}
+            onClick={openNotifications}
           />
         </div>
-        {props.seeingNotifications && (
+        {seeingNotifications && (
           <NotificationList
-            closeNotifications={props.closeNotifications}
-            notificationList={props.notificationList}
+            closeNotifications={closeNotifications}
+            notificationList={notificationList}
           />
         )}
         <div className={styles.navIcon}>
-          <Link to={{ pathname: `/${props.username}` }} target="_self">
+          <Link to={{ pathname: `/${username}` }} target="_self">
             <Ionicon icon="ios-person-outline" fontSize="32px" color="black" />
           </Link>
         </div>

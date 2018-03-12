@@ -3,24 +3,33 @@ import PropTypes from "prop-types";
 import FacebookLogin from 'react-facebook-login';
 import formStyles from "shared/formStyles.scss";
 
-const LoginForm = (props, context) => (
+const LoginForm = (
+  {
+    handleSubmit,
+    usernameValue,
+    handleInputChange,
+    passwordValue,
+    handleFacebookLogin,
+  }, 
+  context
+) => (
   <div className={formStyles.formComponent}>
-    <form className={formStyles.form} onSubmit={props.handleSubmit}>
+    <form className={formStyles.form} onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder={context.t("Username")}
         className={formStyles.textInput}
         name="username"
-        value={props.usernameValue}
-        onChange={props.handleInputChange}
+        value={usernameValue}
+        onChange={handleInputChange}
       />
       <input
         type="password"
         placeholder={context.t("Password")}
         className={formStyles.textInput}
         name="password"
-        value={props.passwordValue}
-        onChange={props.handleInputChange}
+        value={passwordValue}
+        onChange={handleInputChange}
       />
       <input
         type="submit"
@@ -33,7 +42,7 @@ const LoginForm = (props, context) => (
       appId="813108485540895"
       autoLoad={false}
       fields="name,email,picture"
-      callback={props.handleFacebookLogin}
+      callback={handleFacebookLogin}
       cssClass={formStyles.facebookLink}
       icon='fa-facebook-official'
       textButton={context.t('Log in with Facebook')}

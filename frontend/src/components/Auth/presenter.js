@@ -4,29 +4,35 @@ import PropTypes from 'prop-types';
 import LoginForm from 'components/LoginForm';
 import SignupForm from 'components/SignupForm';
 
-const Auth = (props, context) => (
+const Auth = (
+  {
+    action, 
+    changeAction
+  }, 
+  context
+) => (
   <main className={styles.auth}>
     <div className={styles.column}>
       <img src={require("images/phone.png" )} alt={context.t('Check our app. Is cool')} />
     </div>
     <div className={styles.column}>
     <div className={`${styles.whiteBox} ${styles.formBox}`}>
-      {props.action === 'login' && <LoginForm />}
-      {props.action === 'signup' && <SignupForm />}
+      {action === 'login' && <LoginForm />}
+      {action === 'signup' && <SignupForm />}
     </div>
       <div className={styles.whiteBox}>
-        {props.action === "login" && (
+        {action === "login" && (
           <p className={styles.text}>
             {context.t("Don't have an account?")}{" "}
-            <span className={styles.changeLink} onClick={props.changeAction}>
+            <span className={styles.changeLink} onClick={changeAction}>
               {context.t('Sign up')}
             </span>
           </p>
         )}
-        {props.action === "signup" && (
+        {action === "signup" && (
           <p className={styles.text}>
             {context.t('Have an account?')}{" "}
-            <span className={styles.changeLink} onClick={props.changeAction}>
+            <span className={styles.changeLink} onClick={changeAction}>
               {context.t('Log in')}
             </span>
           </p>

@@ -8,31 +8,49 @@ import CommentBox from 'components/CommentBox';
 import { Link } from "react-router-dom";
 import UserList from 'components/UserList';
 
-const FeedPhoto = (props, context) => {
+const FeedPhoto = (
+    {
+        creator,
+        location, 
+        file, 
+        caption, 
+        like_count, 
+        is_liked, 
+        id, 
+        openUsers, 
+        comments, 
+        tags, 
+        natural_time,
+        seeingLikes, 
+        closeUsers, 
+        likes
+    }, 
+    context
+) => {
     return <div className={styles.feedPhoto}>
         <Link 
-            to={{ pathname: `/${props.creator.username}` }}
+            to={{ pathname: `/${creator.username}` }}
             target='_self'
             style={{ textDecoration: 'none', color:'black' }}
         >
           <header className={styles.header}>
-            <img src={props.creator.profile_image || require("images/noPhoto.jpg")} alt={props.creator.username} className={styles.avator} /> <div className={styles.headerColumn}>
+            <img src={creator.profile_image || require("images/noPhoto.jpg")} alt={creator.username} className={styles.avator} /> <div className={styles.headerColumn}>
               <span className={styles.creator}>
-                {props.creator.username}
+                {creator.username}
               </span> <span className={styles.location}>
-                {props.location}
+                {location}
               </span>
             </div>
           </header>
         </Link>
-        <img src={props.file} alt={props.caption} className={styles.image} />
+        <img src={file} alt={caption} className={styles.image} />
         <div>
-          <PhotoActions number={props.like_count} isLiked={props.is_liked} photoId={props.id} openUsers={props.openUsers} />
-          <PhotoComments caption={props.caption} creator={props.creator.username} comments={props.comments} tags={props.tags} />
-          <TimeStamp time={props.natural_time} />
-          <CommentBox photoId={props.id} />
+          <PhotoActions number={like_count} isLiked={is_liked} photoId={id} openUsers={openUsers} />
+          <PhotoComments caption={caption} creator={creator.username} comments={comments} tags={tags} />
+          <TimeStamp time={natural_time} />
+          <CommentBox photoId={id} />
         </div>
-        {props.seeingLikes && <UserList title={context.t("Likes")} closeUsers={props.closeUsers} userList={props.likes} />}
+        {seeingLikes && <UserList title={context.t("Likes")} closeUsers={closeUsers} userList={likes} />}
       </div>;
 };
 

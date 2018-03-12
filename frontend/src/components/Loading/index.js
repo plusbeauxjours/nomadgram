@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.scss';
 
-const Loading = props => (
+const Loading = () => (
   <div className={styles.container}>
     <img
       src={require("images/loading.png")}

@@ -3,16 +3,24 @@ import PropTypes from 'prop-types';
 import Textarea from 'react-textarea-autosize';
 import styles from './styles.scss';
 
-const CommentBox = (props, context) => (
-    <form className={styles.commentBox} onSubmit={props.handleSubmit}>
-        <Textarea 
-            className={styles.input}
-            placeholder={context.t("Add a comment...")}
-            value={props.comment} 
-            onChange={props.handleInputChange}
-            onKeyPress={props.handleKeyPress}
-        />
-    </form>
+const CommentBox = (
+  { 
+    handleSubmit, 
+    comment, 
+    handleInputChange, 
+    handleKeyPress 
+  }, 
+  context
+) => (
+  <form className={styles.commentBox} onSubmit={handleSubmit}>
+    <Textarea
+      className={styles.input}
+      placeholder={context.t("Add a comment...")}
+      value={comment}
+      onChange={handleInputChange}
+      onKeyPress={handleKeyPress}
+    />
+  </form>
 );
 
 CommentBox.propTypes = {

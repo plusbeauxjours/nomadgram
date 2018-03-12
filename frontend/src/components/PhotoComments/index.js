@@ -3,14 +3,20 @@ import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-const PhotoComments = props => (
+const PhotoComments = (
+  {
+    creator, 
+    caption,
+    comments
+  }
+) => (
   <div className={styles.comments}>
     <ul className={styles.list}>
       <Comment
-        username={props.creator}
-        comment={props.caption}
+        username={creator}
+        comment={caption}
       />
-      {props.comments.map(comment => (
+      {comments.map(comment => (
         <Comment
           username={comment.creator.username}
           comment={comment.message}
@@ -21,16 +27,21 @@ const PhotoComments = props => (
   </div>
 );
 
-const Comment = props => (
+const Comment = (
+  {
+    username,
+    comment
+  }
+) => (
   <li className={styles.comment}>
     <Link
-      to={{ pathname: `/${props.username}` }}
+      to={{ pathname: `/${username}` }}
       target="_self"
       style={{ textDecoration: "none", color: "black" }}
     >
-      <span className={styles.username}>{props.username}</span>{" "}
+      <span className={styles.username}>{username}</span>{" "}
     </Link>
-    <span className={styles.message}>{props.comment}</span>{" "}
+    <span className={styles.message}>{comment}</span>{" "}
   </li>
 );
 

@@ -4,16 +4,23 @@ import styles from './styles.scss';
 import Loading from 'components/Loading';
 import NotificationRow from 'components/NotificationRow';
 
-const NotificationList = props => (
-  <div className={styles.container} onClick={props.closeNotifications}>
+const NotificationList = (
+  {
+    closeNotifications,
+    notificationList,
+    handleClick,
+    loading
+  }
+) => (
+  <div className={styles.container} onClick={closeNotifications}>
     <div className={styles.box}>
       <span className={styles.content}>
-        {props.loading ? (
+        {loading ? (
           <LoadingNotification />
         ) : (
           <RenderNotification
-            notificationList={props.notificationList}
-            handleClick={props.handleClick}
+            notificationList={notificationList}
+            handleClick={handleClick}
           />
         )}
       </span>
@@ -21,16 +28,16 @@ const NotificationList = props => (
   </div>
 );
 
-const LoadingNotification = props => (
+const LoadingNotification = () => (
   <div className={styles.loading}>
     <Loading />
   </div>
 );
 
-const RenderNotification = props =>
-  props.notificationList.map(notification => (
+const RenderNotification = ({notificationList, handleClick}) =>
+  notificationList.map(notification => (
     <NotificationRow
-      handleClick={props.handleClick}
+      handleClick={handleClick}
       key={notification.id}
       creator={notification.creator}
       notification_type={notification.notification_type}
