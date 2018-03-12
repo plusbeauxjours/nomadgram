@@ -33,15 +33,14 @@ const PhotoActions = (
 );
 
 PhotoActions.propTypes = {
-    number: PropTypes.number.isRequired,
-    isLiked: PropTypes.bool.isRequired,
-    photoId: PropTypes.number.isRequired,
-    handleHeartClick: PropTypes.func.isRequired,
-    openUsers: PropTypes.func.isRequired
+  handleHeartClick: PropTypes.func.isRequired,
+  isLiked: PropTypes.bool.isRequired,
+  openUsers: PropTypes.func.isRequired,
+  number: PropTypes.number.isRequired,
 };
     
 PhotoActions.contextTypes = {
     t: PropTypes.func.isRequired
 };
 
-export default PhotoActions; 
+export default PhotoActions;     

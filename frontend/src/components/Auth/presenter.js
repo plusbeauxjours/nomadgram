@@ -55,6 +55,11 @@ const Auth = (
   </main>
 );
 
+Auth.propTypes = {
+  action: PropTypes.string.isRequired,
+  changeAction: PropTypes.func.isRequired,
+};
+
 Auth.contextTypes = {
   t: PropTypes.func.isRequired
 };

@@ -75,11 +75,14 @@ Navigation.contextTypes = {
 }
 
 Navigation.PropsTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func,
+  seeingNotifications: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
   openNotifications: PropTypes.func.isRequired,
   closeNotifications: PropTypes.func.isRequired,
-  onInputChange: PropTypes.func,
-  onSubmit: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired
+  notificationList: PropTypes.array
 };
 
 export default Navigation;

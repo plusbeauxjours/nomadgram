@@ -77,12 +77,13 @@ const SignupForm = (
 );
 
 SignupForm.propTypes = {
-  usernameValue: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string.isRequired,
-  emailValue: PropTypes.string.isRequired,
-  nameValue: PropTypes.string.isRequired,
+  handleFacebookLogin: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  emailValue: PropTypes.string.isRequired,
+  usernameValue: PropTypes.string.isRequired,
+  nameValue: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string.isRequired,
 }
 
 SignupForm.contextTypes = {

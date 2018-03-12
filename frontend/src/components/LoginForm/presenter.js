@@ -54,10 +54,10 @@ const LoginForm = (
 );
 
 LoginForm.propTypes = {
-  usernameValue: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  usernameValue: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  passwordValue: PropTypes.string.isRequired,
   handleFacebookLogin: PropTypes.func.isRequired
 };
 

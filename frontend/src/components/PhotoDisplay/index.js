@@ -22,6 +22,7 @@ const PhotoDisplay = props => (
 PhotoDisplay.propTypes = {
   photo: PropTypes.shape({
     file: PropTypes.string.isRequired,
+    creator: PropTypes.array,
     comment_count: PropTypes.number.isRequired,
     like_count: PropTypes.number.isRequired
   }).isRequired

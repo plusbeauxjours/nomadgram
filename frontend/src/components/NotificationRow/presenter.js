@@ -117,6 +117,19 @@ const NotificationRow = (
 );
 
 NotificationRow.propTypes = {
+  creator: PropTypes.shape({
+    username: PropTypes.string.isRequiored,
+    profile_image: PropTypes.string,
+    is_following: PropTypes.bool.isRequired
+  }).isRequired,
+  notification_type: PropTypes.string.isRequired,
+  comment: PropTypes.string,
+  natural_time: PropTypes.string.isRequired,
+  image: PropTypes.shape({
+    file: PropTypes.string,
+    caption: PropTypes.string
+  }),
+  handleClick: PropTypes.func.isRequired
 };
 
 NotificationRow.contextTypes = {

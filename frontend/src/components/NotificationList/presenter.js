@@ -46,24 +46,16 @@ const RenderNotification = ({notificationList, handleClick}) =>
       image={notification.image}
     />
   ));
-
+    
 Notification.propTypes = {
-  onClick: PropTypes.func,
-  notification: PropTypes.array
+  closeNotifications: PropTypes.func,
+  notificationList: PropTypes.aray,
+  handleClick: PropTypes.func.isRequired,
+  loading: PropTypes.bool
 };
 
 RenderNotification.propTypes = {
-  creator: PropTypes.shape({
-    profile: PropTypes.string,
-    username: PropTypes.string.isRequired
-  }),
-  notification_type: PropTypes.string,
-  comment: PropTypes.string,
-  image: PropTypes.shape({
-    file: PropTypes.string
-  }),
-  key: PropTypes.number,
-  handleClick: PropTypes.func
+  notificationList: PropTypes.array,
 };
 
 export default NotificationList;

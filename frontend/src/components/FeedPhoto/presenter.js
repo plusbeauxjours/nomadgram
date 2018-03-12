@@ -10,19 +10,19 @@ import UserList from 'components/UserList';
 
 const FeedPhoto = (
     {
+        id, 
         creator,
         location, 
         file, 
-        caption, 
         like_count, 
-        is_liked, 
-        id, 
-        openUsers, 
+        caption, 
         comments, 
-        tags, 
         natural_time,
+        is_liked, 
         seeingLikes, 
+        openUsers, 
         closeUsers, 
+        tags, 
         likes
     }, 
     context
@@ -82,7 +82,9 @@ FeedPhoto.propTypes = {
     is_liked: PropTypes.bool.isRequired,
     seeingLikes: PropTypes.bool.isRequired,
     openUsers: PropTypes.func.isRequired,
-    closeUsers: PropTypes.func.isRequired
+    closeUsers: PropTypes.func.isRequired,
+    tags: PropTypes.array,
+    likes: PropTypes.array
 };
 
-export default FeedPhoto; 
+export default FeedPhoto;         

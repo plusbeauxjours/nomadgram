@@ -24,13 +24,14 @@ const CommentBox = (
 );
 
 CommentBox.propTypes = {
-    handleInputChange: PropTypes.func.isRequired,
-    comment: PropTypes.string.isRequired,
-    handleKeyPress: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func,
+  comment: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleKeyPress: PropTypes.func.isRequired
 };
 
 CommentBox.contextTypes = {
-    t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired
 }
 
 export default CommentBox;

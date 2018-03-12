@@ -46,17 +46,22 @@ const Comment = (
 );
 
 PhotoComments.propTypes = {
-    caption: PropTypes.string.isRequired,
-    creator: PropTypes.string.isRequired,
-    comments: PropTypes.arrayOf(
-        PropTypes.shape({
-            message: PropTypes.string.isRequired,
-            creator: PropTypes.shape({
-                profile_image: PropTypes.string,
-                username: PropTypes.string.isRequired
-            }).isRequired
-        })
-    ).isRequired
+  creator: PropTypes.string.isRequired,
+  caption: PropTypes.string.isRequired,
+  comments: PropTypes.arrayOf(
+      PropTypes.shape({
+          message: PropTypes.string.isRequired,
+          creator: PropTypes.shape({
+              username: PropTypes.string.isRequired
+          }).isRequired,
+          id: PropTypes.number.isRequired
+      })
+  ).isRequired
+};
+
+Comment.propTypes = {
+  username: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired
 };
 
 export default PhotoComments;

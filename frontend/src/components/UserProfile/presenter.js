@@ -82,6 +82,32 @@ RenderUserProfile.contextTypes = {
 };
 
 UserProfile.propTypes = {
-}
+  loading: PropTypes.bool,
+};
+
+RenderUserProfile.propTypes = {
+  userProfile: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      profile_image: PropTypes.string,
+      username: PropTypes.string.isRequired,
+      is_self: PropTypes.bool.isRequired,
+      is_following: PropTypes.bool.isRequired,
+      post_count: PropTypes.number.isRequired,
+      followers_count: PropTypes.number.isRequired,
+      following_count: PropTypes.number.isRequired,
+      name: PropTypes.string,
+      website: PropTypes.string,
+      bio: PropTypes.string
+    }).isRequired,
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      image: PropTypes.array
+    })
+  ),
+  seeingUsers: PropTypes.bool.isRequired,
+  closeUsers: PropTypes.func.isRequired,
+  userList: PropTypes.array
+};
 
 export default UserProfile;

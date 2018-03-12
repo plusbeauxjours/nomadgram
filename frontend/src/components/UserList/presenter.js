@@ -30,15 +30,21 @@ const RenderUsers = props =>
         />
     );
 
-RenderUsers.propTypes = {
-    list: PropTypes.array
-}
-
 UserList.propTypes = {
     title: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
     userList: PropTypes.array,
     closeUsers: PropTypes.func.isRequired
 }
+
+RenderUsers.propTypes = {
+    list: PropTypes.arrayOf(
+        PropTypes.shape({
+            horizontal: PropTypes.bool.isRequired,
+            user: PropTypes.array,
+            id: PropTypes.number.isRequired
+        })
+    )
+};
 
 export default UserList;

@@ -69,10 +69,18 @@ Search.contextTypes = {
     t: PropTypes.func.isRequired
 }
 
-Search.propTypes ={
+Search.propTypes = {
     loading: PropTypes.bool.isRequired,
     imageList: PropTypes.array,
     userList: PropTypes.array
+}
+
+RenderUserSearch.propTypes = {
+  userList: PropTypes.array
+};
+
+NotFound.PropTypes = {
+    text: PropTypes.string.isRequired
 }
 
 export default Search;

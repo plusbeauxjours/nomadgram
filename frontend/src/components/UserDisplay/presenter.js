@@ -41,6 +41,8 @@ UserDisplay.contextTypes = {
 };
 
 UserDisplay.propTypes = {
+  horizontal: PropTypes.bool,
+  vertical: PropTypes.bool,
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,
     profile_image: PropTypes.string,
@@ -48,10 +50,8 @@ UserDisplay.propTypes = {
     name: PropTypes.string,
     is_following: PropTypes.bool.isRequired
   }).isRequired,
-  big: PropTypes.bool,
+  big: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
-  horizontal: PropTypes.bool,
-  vertical: PropTypes.bool
 };
 
 UserDisplay.defaultProps = {
